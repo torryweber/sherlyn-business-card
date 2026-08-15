@@ -1,25 +1,48 @@
 /* =========================================
    SHERLYN CHONG
    DIGITAL NFC BUSINESS CARD
+   SAINT-GOBAIN WEBER & TEKBOND
+========================================= */
+
+
+/* =========================================
+   RESET
 ========================================= */
 
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
 
     -webkit-tap-highlight-color: transparent;
+
 }
+
+
+/* =========================================
+   HTML / BODY
+========================================= */
 
 html,
 body {
+
     width: 100%;
+
     min-height: 100%;
+
 }
 
+
 html {
-    background: #061A3A;
+
+    background:
+        #061A3A;
+
 }
+
 
 body {
 
@@ -28,12 +51,15 @@ body {
         BlinkMacSystemFont,
         "SF Pro Display",
         "SF Pro Text",
+        "Helvetica Neue",
         "Segoe UI",
         sans-serif;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
     background:
+
         radial-gradient(
             circle at 50% -15%,
             rgba(255, 235, 0, 0.17),
@@ -53,9 +79,12 @@ body {
             #06122C 100%
         );
 
-    min-height: 100dvh;
+    min-height:
+        100dvh;
 
-    overflow-x: hidden;
+    overflow-x:
+        hidden;
+
 }
 
 
@@ -65,36 +94,55 @@ body {
 
 .background-glow {
 
-    position: fixed;
+    position:
+        fixed;
 
-    width: 330px;
-    height: 330px;
+    width:
+        330px;
 
-    border-radius: 50%;
+    height:
+        330px;
 
-    filter: blur(95px);
+    border-radius:
+        50%;
 
-    pointer-events: none;
+    filter:
+        blur(95px);
 
-    z-index: 0;
+    pointer-events:
+        none;
+
+    z-index:
+        0;
+
 }
+
 
 .glow-yellow {
 
-    top: -150px;
-    left: -110px;
+    top:
+        -150px;
+
+    left:
+        -110px;
 
     background:
         rgba(255, 235, 0, 0.20);
+
 }
+
 
 .glow-blue {
 
-    right: -130px;
-    bottom: -160px;
+    right:
+        -130px;
+
+    bottom:
+        -160px;
 
     background:
         rgba(0, 92, 255, 0.22);
+
 }
 
 
@@ -104,29 +152,45 @@ body {
 
 .card {
 
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    width: min(100%, 430px);
+    width:
+        min(100%, 430px);
 
-    min-height: 100dvh;
+    min-height:
+        100dvh;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
     padding-top:
-        max(25px, env(safe-area-inset-top));
+        max(
+            25px,
+            env(safe-area-inset-top)
+        );
 
-    padding-right: 21px;
+    padding-right:
+        21px;
 
     padding-bottom:
-        max(22px, env(safe-area-inset-bottom));
+        max(
+            22px,
+            env(safe-area-inset-bottom)
+        );
 
-    padding-left: 21px;
+    padding-left:
+        21px;
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
+
 }
 
 
@@ -136,26 +200,44 @@ body {
 
 .logo-container {
 
-    display: flex;
+    width:
+        100%;
 
-    align-items: center;
+    display:
+        flex;
 
-    justify-content: center;
+    align-items:
+        center;
 
-    margin-top: 6px;
+    justify-content:
+        center;
 
-    margin-bottom: 13px;
+    margin-top:
+        6px;
+
+    margin-bottom:
+        13px;
+
 }
+
 
 .weber-logo {
 
-    width: 145px;
+    width:
+        145px;
 
-    height: 55px;
+    height:
+        55px;
 
-    object-fit: contain;
+    object-fit:
+        contain;
 
-    display: block;
+    object-position:
+        center;
+
+    display:
+        block;
+
 }
 
 
@@ -165,90 +247,141 @@ body {
 
 .profile {
 
-    text-align: center;
+    width:
+        100%;
 
-    margin-bottom: 18px;
+    text-align:
+        center;
+
+    margin-bottom:
+        18px;
+
 }
+
 
 .profile-ring {
 
-    width: 116px;
-    height: 116px;
+    width:
+        116px;
 
-    padding: 3px;
+    height:
+        116px;
 
-    margin: 0 auto 12px;
+    padding:
+        3px;
 
-    border-radius: 50%;
+    margin:
+        0 auto 12px;
+
+    border-radius:
+        50%;
 
     background:
+
         linear-gradient(
             145deg,
-            #fff200,
+            #fff200 0%,
             #ffdf00 45%,
-            #ffffff
+            #ffffff 100%
         );
 
     box-shadow:
-        0 0 0 5px rgba(255,235,0,.07),
-        0 12px 45px rgba(255,225,0,.18);
+
+        0 0 0 5px
+        rgba(255, 235, 0, 0.07),
+
+        0 12px 45px
+        rgba(255, 225, 0, 0.18);
+
 }
+
 
 .profile-photo {
 
-    width: 100%;
-    height: 100%;
+    width:
+        100%;
 
-    display: block;
+    height:
+        100%;
 
-    object-fit: cover;
+    display:
+        block;
 
-    border-radius: 50%;
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    border-radius:
+        50%;
 
     border:
         3px solid
         #071A3D;
+
 }
+
 
 .profile h1 {
 
-    font-size: 27px;
+    font-size:
+        27px;
 
-    line-height: 1.08;
+    line-height:
+        1.08;
 
-    letter-spacing: -.7px;
+    letter-spacing:
+        -0.7px;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    margin-bottom: 5px;
+    color:
+        #ffffff;
+
+    margin-bottom:
+        5px;
+
 }
+
 
 .position {
 
-    color: #fff200;
+    color:
+        #fff200;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    line-height: 1.3;
+    line-height:
+        1.3;
 
-    font-weight: 600;
+    font-weight:
+        600;
+
 }
+
 
 .company {
 
-    margin-top: 4px;
+    margin-top:
+        4px;
 
     color:
-        rgba(255,255,255,.64);
+        rgba(255,255,255,0.64);
 
-    font-size: 12px;
+    font-size:
+        12px;
 
-    line-height: 1.3;
+    line-height:
+        1.3;
+
 }
 
 
 /* =========================================
-   GLASS
+   GLASS BUTTON BASE
 ========================================= */
 
 .action-button,
@@ -257,10 +390,10 @@ body {
 
     border:
         1px solid
-        rgba(255,255,255,.10);
+        rgba(255,255,255,0.10);
 
     background:
-        rgba(255,255,255,.065);
+        rgba(255,255,255,0.065);
 
     backdrop-filter:
         blur(25px);
@@ -269,8 +402,13 @@ body {
         blur(25px);
 
     box-shadow:
-        inset 0 1px rgba(255,255,255,.07),
-        0 10px 30px rgba(0,0,0,.10);
+
+        inset 0 1px
+        rgba(255,255,255,0.07),
+
+        0 10px 30px
+        rgba(0,0,0,0.10);
+
 }
 
 
@@ -280,85 +418,146 @@ body {
 
 .action-button {
 
-    width: 100%;
+    width:
+        100%;
 
-    min-height: 54px;
+    min-height:
+        54px;
 
-    padding: 0 16px;
+    padding:
+        0 16px;
 
-    border-radius: 18px;
+    border-radius:
+        18px;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 11px;
+    gap:
+        11px;
 
-    font-family: inherit;
+    font-family:
+        inherit;
 
-    font-size: 15px;
+    font-size:
+        15px;
 
-    font-weight: 600;
+    font-weight:
+        600;
 
-    cursor: pointer;
+    cursor:
+        pointer;
+
+    -webkit-appearance:
+        none;
+
+    appearance:
+        none;
 
     transition:
-        transform .16s ease,
-        background .16s ease;
+
+        transform
+        .16s
+        ease,
+
+        background
+        .16s
+        ease;
+
 }
+
 
 .save-button {
 
-    margin-bottom: 11px;
+    margin-bottom:
+        11px;
+
 }
+
 
 .icon {
 
-    width: 30px;
-    height: 30px;
+    width:
+        30px;
 
-    display: flex;
+    height:
+        30px;
 
-    align-items: center;
+    flex-shrink:
+        0;
 
-    justify-content: center;
+    display:
+        flex;
 
-    color: #fff200;
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    color:
+        #fff200;
+
 }
+
 
 .icon svg {
 
-    width: 22px;
-    height: 22px;
+    width:
+        22px;
 
-    fill: none;
+    height:
+        22px;
 
-    stroke: currentColor;
+    fill:
+        none;
 
-    stroke-width: 1.8;
+    stroke:
+        currentColor;
 
-    stroke-linecap: round;
+    stroke-width:
+        1.8;
 
-    stroke-linejoin: round;
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
 }
+
 
 .button-label {
 
-    flex: 1;
+    flex:
+        1;
 
-    text-align: left;
+    text-align:
+        left;
+
 }
+
 
 .arrow {
 
-    font-size: 25px;
+    font-size:
+        25px;
 
-    font-weight: 300;
+    line-height:
+        1;
+
+    font-weight:
+        300;
 
     color:
-        rgba(255,255,255,.40);
+        rgba(255,255,255,0.40);
+
 }
 
 
@@ -368,192 +567,301 @@ body {
 
 .contact-row {
 
-    width: 100%;
+    width:
+        100%;
 
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
-        repeat(3, minmax(0,1fr));
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
 
-    gap: 9px;
+    gap:
+        9px;
 
-    margin-bottom: 11px;
+    margin-bottom:
+        11px;
+
 }
+
 
 .quick-action {
 
-    min-height: 72px;
+    min-height:
+        72px;
 
-    border-radius: 17px;
+    border-radius:
+        17px;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    gap: 6px;
+    gap:
+        6px;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
-    font-weight: 600;
+    font-weight:
+        600;
 
     transition:
-        transform .16s ease;
+        transform
+        .16s
+        ease;
+
 }
+
 
 .quick-icon {
 
-    width: 28px;
-    height: 28px;
+    width:
+        28px;
 
-    display: flex;
+    height:
+        28px;
 
-    align-items: center;
+    display:
+        flex;
 
-    justify-content: center;
+    align-items:
+        center;
 
-    color: #fff200;
+    justify-content:
+        center;
+
+    color:
+        #fff200;
+
 }
+
 
 .quick-icon svg {
 
-    width: 21px;
-    height: 21px;
+    width:
+        21px;
 
-    fill: none;
+    height:
+        21px;
 
-    stroke: currentColor;
+    fill:
+        none;
 
-    stroke-width: 1.7;
+    stroke:
+        currentColor;
 
-    stroke-linecap: round;
+    stroke-width:
+        1.7;
 
-    stroke-linejoin: round;
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
 }
 
 
 /* =========================================
-   WIDE BUTTONS
+   WIDE BUTTON
 ========================================= */
 
 .wide-button {
 
-    width: 100%;
+    width:
+        100%;
 
-    min-height: 60px;
+    min-height:
+        60px;
 
-    margin-bottom: 10px;
+    margin-bottom:
+        10px;
 
-    padding: 0 14px;
+    padding:
+        0 14px;
 
-    border-radius: 18px;
+    border-radius:
+        18px;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 12px;
+    gap:
+        12px;
 
     transition:
-        transform .16s ease;
+        transform
+        .16s
+        ease;
+
 }
+
 
 .wide-icon {
 
-    width: 34px;
-    height: 34px;
+    width:
+        34px;
 
-    flex-shrink: 0;
+    height:
+        34px;
 
-    border-radius: 11px;
+    flex-shrink:
+        0;
 
-    display: flex;
+    border-radius:
+        11px;
 
-    align-items: center;
+    display:
+        flex;
 
-    justify-content: center;
+    align-items:
+        center;
 
-    color: #fff200;
+    justify-content:
+        center;
+
+    color:
+        #fff200;
 
     background:
-        rgba(255,235,0,.11);
+        rgba(255,235,0,0.11);
+
 }
+
 
 .wide-icon svg {
 
-    width: 20px;
-    height: 20px;
+    width:
+        20px;
 
-    fill: none;
+    height:
+        20px;
 
-    stroke: currentColor;
+    fill:
+        none;
 
-    stroke-width: 1.7;
+    stroke:
+        currentColor;
 
-    stroke-linecap: round;
+    stroke-width:
+        1.7;
 
-    stroke-linejoin: round;
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
 }
+
 
 .wide-text {
 
-    min-width: 0;
+    min-width:
+        0;
 
-    display: flex;
+    display:
+        flex;
 
-    flex-direction: column;
+    flex-direction:
+        column;
 
-    gap: 2px;
+    gap:
+        2px;
+
 }
+
 
 .wide-text small {
 
-    font-size: 9px;
+    font-size:
+        9px;
 
-    line-height: 1;
+    line-height:
+        1;
 
-    letter-spacing: .8px;
+    letter-spacing:
+        0.8px;
 
     color:
-        rgba(255,255,255,.40);
+        rgba(255,255,255,0.40);
+
 }
+
 
 .wide-text strong {
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    line-height: 1.2;
+    line-height:
+        1.2;
 
-    font-weight: 600;
+    font-weight:
+        600;
 
-    white-space: nowrap;
+    white-space:
+        nowrap;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    text-overflow: ellipsis;
+    text-overflow:
+        ellipsis;
+
 }
+
 
 .wide-arrow {
 
-    margin-left: auto;
+    margin-left:
+        auto;
 
-    font-size: 24px;
+    flex-shrink:
+        0;
 
-    font-weight: 300;
+    font-size:
+        24px;
+
+    line-height:
+        1;
+
+    font-weight:
+        300;
 
     color:
-        rgba(255,255,255,.38);
+        rgba(255,255,255,0.38);
+
 }
 
 
@@ -563,68 +871,103 @@ body {
 
 .share-button {
 
-    width: 100%;
+    width:
+        100%;
 
-    min-height: 52px;
+    min-height:
+        52px;
 
-    margin-top: 1px;
+    margin-top:
+        1px;
 
-    border: none;
+    border:
+        none;
 
-    border-radius: 17px;
+    border-radius:
+        17px;
 
     background:
+
         linear-gradient(
             135deg,
-            #fff200,
-            #ffd900
+            #fff200 0%,
+            #ffd900 100%
         );
 
-    color: #06122C;
+    color:
+        #06122C;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    gap: 9px;
+    gap:
+        9px;
 
-    font-family: inherit;
+    font-family:
+        inherit;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    cursor: pointer;
+    cursor:
+        pointer;
+
+    -webkit-appearance:
+        none;
+
+    appearance:
+        none;
 
     box-shadow:
+
         0 10px 35px
-        rgba(255,225,0,.15);
+        rgba(255,225,0,0.15);
 
     transition:
-        transform .16s ease;
+        transform
+        .16s
+        ease;
+
 }
+
 
 .share-button svg {
 
-    width: 19px;
-    height: 19px;
+    width:
+        19px;
 
-    fill: none;
+    height:
+        19px;
 
-    stroke: currentColor;
+    fill:
+        none;
 
-    stroke-width: 1.8;
+    stroke:
+        currentColor;
 
-    stroke-linecap: round;
+    stroke-width:
+        1.8;
 
-    stroke-linejoin: round;
+    stroke-linecap:
+        round;
+
+    stroke-linejoin:
+        round;
+
 }
 
 
 /* =========================================
-   TOUCH
+   TOUCH FEEDBACK
 ========================================= */
 
 .action-button:active,
@@ -632,7 +975,38 @@ body {
 .wide-button:active,
 .share-button:active {
 
-    transform: scale(.97);
+    transform:
+        scale(0.97);
+
+}
+
+
+.action-button:hover,
+.quick-action:hover,
+.wide-button:hover {
+
+    background:
+        rgba(255,255,255,0.09);
+
+}
+
+
+/* =========================================
+   FOCUS
+========================================= */
+
+.action-button:focus-visible,
+.quick-action:focus-visible,
+.wide-button:focus-visible,
+.share-button:focus-visible {
+
+    outline:
+        2px solid
+        #fff200;
+
+    outline-offset:
+        2px;
+
 }
 
 
@@ -642,96 +1016,147 @@ body {
 
 .footer {
 
-    margin-top: auto;
+    margin-top:
+        auto;
 
-    padding-top: 12px;
+    padding-top:
+        12px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    font-size: 8px;
+    font-size:
+        8px;
 
-    line-height: 1;
+    line-height:
+        1;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 
     color:
-        rgba(255,255,255,.22);
+        rgba(255,255,255,0.22);
+
 }
 
 
 /* =========================================
-   SMALL SCREEN
+   SMALL IPHONE
 ========================================= */
 
-@media (max-height:720px) {
+@media (max-height: 720px) {
+
 
     .card {
 
         padding-top:
-            max(17px, env(safe-area-inset-top));
+            max(
+                17px,
+                env(safe-area-inset-top)
+            );
+
     }
+
 
     .logo-container {
 
-        margin-top: 2px;
+        margin-top:
+            2px;
 
-        margin-bottom: 7px;
+        margin-bottom:
+            7px;
+
     }
+
 
     .weber-logo {
 
-        width: 125px;
+        width:
+            125px;
 
-        height: 43px;
+        height:
+            43px;
+
     }
+
 
     .profile {
 
-        margin-bottom: 12px;
+        margin-bottom:
+            12px;
+
     }
+
 
     .profile-ring {
 
-        width: 92px;
-        height: 92px;
+        width:
+            92px;
 
-        margin-bottom: 8px;
+        height:
+            92px;
+
+        margin-bottom:
+            8px;
+
     }
+
 
     .profile h1 {
 
-        font-size: 23px;
+        font-size:
+            23px;
+
     }
+
 
     .position {
 
-        font-size: 13px;
+        font-size:
+            13px;
+
     }
+
 
     .company {
 
-        font-size: 11px;
+        font-size:
+            11px;
+
     }
+
 
     .action-button {
 
-        min-height: 50px;
+        min-height:
+            50px;
+
     }
+
 
     .quick-action {
 
-        min-height: 62px;
+        min-height:
+            62px;
+
     }
+
 
     .wide-button {
 
-        min-height: 54px;
+        min-height:
+            54px;
+
     }
+
 
     .share-button {
 
-        min-height: 48px;
+        min-height:
+            48px;
+
     }
+
 }
 
 
@@ -739,45 +1164,244 @@ body {
    VERY SMALL SCREEN
 ========================================= */
 
-@media (max-height:640px) {
+@media (max-height: 640px) {
+
+
+    .card {
+
+        padding-right:
+            17px;
+
+        padding-left:
+            17px;
+
+    }
+
 
     .profile-ring {
 
-        width: 78px;
-        height: 78px;
+        width:
+            78px;
+
+        height:
+            78px;
+
     }
+
 
     .profile h1 {
 
-        font-size: 21px;
+        font-size:
+            21px;
+
     }
+
 
     .profile {
 
-        margin-bottom: 9px;
+        margin-bottom:
+            9px;
+
     }
+
+
+    .contact-row {
+
+        gap:
+            7px;
+
+        margin-bottom:
+            8px;
+
+    }
+
 
     .quick-action {
 
-        min-height: 57px;
+        min-height:
+            57px;
+
+        border-radius:
+            15px;
+
     }
+
+
+    .quick-action span {
+
+        font-size:
+            10px;
+
+    }
+
 
     .wide-button {
 
-        min-height: 49px;
+        min-height:
+            49px;
 
-        margin-bottom: 7px;
+        margin-bottom:
+            7px;
+
+        border-radius:
+            16px;
+
     }
+
+
+    .wide-icon {
+
+        width:
+            30px;
+
+        height:
+            30px;
+
+    }
+
 
     .share-button {
 
-        min-height: 45px;
+        min-height:
+            45px;
+
     }
+
 
     .footer {
 
-        padding-top: 8px;
+        padding-top:
+            8px;
+
     }
+
+}
+
+
+/* =========================================
+   LANDSCAPE PHONE
+========================================= */
+
+@media (
+    orientation: landscape
+) and (
+    max-height: 520px
+) {
+
+
+    .card {
+
+        max-width:
+            700px;
+
+        padding-top:
+            15px;
+
+        padding-bottom:
+            15px;
+
+    }
+
+
+    .logo-container {
+
+        margin-bottom:
+            5px;
+
+    }
+
+
+    .weber-logo {
+
+        width:
+            105px;
+
+        height:
+            35px;
+
+    }
+
+
+    .profile {
+
+        margin-bottom:
+            8px;
+
+    }
+
+
+    .profile-ring {
+
+        width:
+            65px;
+
+        height:
+            65px;
+
+        margin-bottom:
+            5px;
+
+    }
+
+
+    .profile h1 {
+
+        font-size:
+            19px;
+
+    }
+
+
+    .position {
+
+        font-size:
+            11px;
+
+    }
+
+
+    .company {
+
+        font-size:
+            10px;
+
+    }
+
+
+    .action-button {
+
+        min-height:
+            44px;
+
+    }
+
+
+    .quick-action {
+
+        min-height:
+            50px;
+
+    }
+
+
+    .wide-button {
+
+        min-height:
+            45px;
+
+        margin-bottom:
+            5px;
+
+    }
+
+
+    .share-button {
+
+        min-height:
+            42px;
+
+    }
+
 }
 
 
@@ -785,14 +1409,19 @@ body {
    REDUCED MOTION
 ========================================= */
 
-@media (prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
+
 
     *,
     *::before,
     *::after {
 
-        transition: none !important;
+        transition:
+            none !important;
 
-        animation: none !important;
+        animation:
+            none !important;
+
     }
+
 }
