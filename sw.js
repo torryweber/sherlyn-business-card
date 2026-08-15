@@ -10,11 +10,11 @@
 ========================================= */
 
 const CACHE_NAME =
-    "sherlyn-card-v1";
+    "sherlyn-card-v2";
 
 
 /* =========================================
-   FILES TO CACHE
+   FILES
 ========================================= */
 
 const APP_FILES = [
@@ -33,7 +33,7 @@ const APP_FILES = [
 
     "./weber-logo.png",
 
-    "./share-contact.png"
+    "./share-preview.png"
 
 ];
 
@@ -49,7 +49,9 @@ self.addEventListener(
         event.waitUntil(
 
             caches
-                .open(CACHE_NAME)
+                .open(
+                    CACHE_NAME
+                )
                 .then(
                     cache => {
 
@@ -121,10 +123,6 @@ self.addEventListener(
     "fetch",
     event => {
 
-        /*
-         * Only handle GET requests.
-         */
-
         if (
             event.request.method !==
             "GET"
@@ -144,11 +142,6 @@ self.addEventListener(
                 .then(
                     cachedResponse => {
 
-                        /*
-                         * Return cached version
-                         * immediately when available.
-                         */
-
                         if (
                             cachedResponse
                         ) {
@@ -158,21 +151,11 @@ self.addEventListener(
                         }
 
 
-                        /*
-                         * Otherwise fetch
-                         * from the network.
-                         */
-
                         return fetch(
                             event.request
                         )
                         .then(
                             networkResponse => {
-
-                                /*
-                                 * Save successful
-                                 * same-origin requests.
-                                 */
 
                                 if (
                                     networkResponse &&
