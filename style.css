@@ -1,7 +1,7 @@
 /* =========================================
    SHERLYN CHONG
    DIGITAL NFC BUSINESS CARD
-   PHASE 3 — PRODUCTION CSS
+   FINAL BALANCED LAYOUT
    SAINT-GOBAIN WEBER & TEKBOND
 ========================================= */
 
@@ -11,24 +11,29 @@
 ========================================= */
 
 * {
+
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
 
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+
 }
 
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
-
+/* =========================================
+   HTML
+========================================= */
 
 html {
+
+    width: 100%;
+    min-height: 100%;
+
     background: #061A3A;
+
 }
 
 
@@ -37,6 +42,10 @@ html {
 ========================================= */
 
 body {
+
+    width: 100%;
+
+    min-height: 100dvh;
 
     font-family:
         -apple-system,
@@ -50,16 +59,17 @@ body {
     color: #ffffff;
 
     background:
+
         radial-gradient(
-            circle at 50% -15%,
-            rgba(255, 235, 0, 0.17),
-            transparent 34%
+            circle at 18% 8%,
+            rgba(255, 235, 0, 0.13),
+            transparent 30%
         ),
 
         radial-gradient(
-            circle at 100% 100%,
-            rgba(0, 91, 255, 0.16),
-            transparent 35%
+            circle at 90% 90%,
+            rgba(0, 91, 255, 0.18),
+            transparent 36%
         ),
 
         linear-gradient(
@@ -69,15 +79,16 @@ body {
             #06122C 100%
         );
 
-    min-height: 100dvh;
-
     overflow-x: hidden;
+
     overflow-y: auto;
 
     -webkit-font-smoothing: antialiased;
+
     -moz-osx-font-smoothing: grayscale;
 
     text-rendering: optimizeLegibility;
+
 }
 
 
@@ -89,73 +100,41 @@ body {
 
     position: fixed;
 
-    width: 330px;
-    height: 330px;
+    width: 340px;
+
+    height: 340px;
 
     border-radius: 50%;
 
-    filter: blur(95px);
+    filter: blur(100px);
 
     pointer-events: none;
 
     z-index: 0;
 
-    will-change: transform;
 }
 
 
 .glow-yellow {
 
-    top: -150px;
-    left: -110px;
+    top: -180px;
+
+    left: -150px;
 
     background:
-        rgba(255, 235, 0, 0.20);
+        rgba(255, 235, 0, 0.18);
 
-    animation:
-        yellowGlow 8s ease-in-out infinite alternate;
 }
 
 
 .glow-blue {
 
-    right: -130px;
-    bottom: -160px;
+    right: -150px;
+
+    bottom: -180px;
 
     background:
-        rgba(0, 92, 255, 0.22);
-
-    animation:
-        blueGlow 10s ease-in-out infinite alternate;
-}
-
-
-/* =========================================
-   BACKGROUND ANIMATION
-========================================= */
-
-@keyframes yellowGlow {
-
-    from {
-        transform: translate3d(0, 0, 0);
-    }
-
-    to {
-        transform: translate3d(35px, 25px, 0);
-    }
-
-}
-
-
-@keyframes blueGlow {
-
-    from {
-        transform: translate3d(0, 0, 0);
-    }
-
-    to {
-        transform: translate3d(-30px, -25px, 0);
-    }
+        rgba(0, 92, 255, 0.20);
 
 }
 
@@ -170,7 +149,10 @@ body {
 
     z-index: 2;
 
-    width: min(100%, 430px);
+    width: min(
+        100%,
+        430px
+    );
 
     min-height: 100dvh;
 
@@ -178,7 +160,7 @@ body {
 
     padding-top:
         max(
-            25px,
+            20px,
             env(safe-area-inset-top)
         );
 
@@ -186,7 +168,7 @@ body {
 
     padding-bottom:
         max(
-            22px,
+            20px,
             env(safe-area-inset-bottom)
         );
 
@@ -195,6 +177,16 @@ body {
     display: flex;
 
     flex-direction: column;
+
+    /*
+     * THIS IS THE MAIN FIX:
+     *
+     * The whole card is centered vertically
+     * instead of pushing the footer to
+     * the bottom.
+     */
+
+    justify-content: center;
 
     opacity: 0;
 
@@ -247,22 +239,35 @@ body {
 
     display: flex;
 
-    align-items: center;
-
     justify-content: center;
 
-    margin-top: 6px;
+    align-items: center;
 
-    margin-bottom: 13px;
+    /*
+     * Increased spacing around logo
+     * for a more premium layout.
+     */
+
+    margin-top: 0;
+
+    margin-bottom: 18px;
 
 }
 
 
 .weber-logo {
 
-    width: 145px;
+    /*
+     * The actual Weber logo artwork
+     * is wider than the profile circle.
+     *
+     * This gives it a similar visual
+     * footprint.
+     */
 
-    height: 55px;
+    width: 120px;
+
+    height: 58px;
 
     object-fit: contain;
 
@@ -287,24 +292,30 @@ body {
 
     text-align: center;
 
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 
 }
 
 
+/* =========================================
+   PROFILE RING
+========================================= */
+
 .profile-ring {
 
-    width: 116px;
+    width: 120px;
 
-    height: 116px;
+    height: 120px;
 
     padding: 3px;
 
-    margin: 0 auto 12px;
+    margin:
+        0 auto 13px;
 
     border-radius: 50%;
 
     background:
+
         linear-gradient(
             145deg,
             #fff200 0%,
@@ -315,10 +326,10 @@ body {
     box-shadow:
 
         0 0 0 5px
-        rgba(255, 235, 0, 0.07),
+        rgba(255,235,0,0.07),
 
         0 12px 45px
-        rgba(255, 225, 0, 0.18);
+        rgba(255,225,0,0.18);
 
     position: relative;
 
@@ -337,7 +348,7 @@ body {
 
     border:
         1px solid
-        rgba(255, 235, 0, 0.22);
+        rgba(255,235,0,0.22);
 
     pointer-events: none;
 
@@ -369,28 +380,36 @@ body {
 }
 
 
+/* =========================================
+   NAME
+========================================= */
+
 .profile h1 {
 
-    font-size: 27px;
+    font-size: 28px;
 
     line-height: 1.08;
 
-    letter-spacing: -0.7px;
+    letter-spacing: -0.75px;
 
     font-weight: 700;
 
     color: #ffffff;
 
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 
 }
 
+
+/* =========================================
+   POSITION
+========================================= */
 
 .position {
 
     color: #fff200;
 
-    font-size: 14px;
+    font-size: 15px;
 
     line-height: 1.3;
 
@@ -399,14 +418,18 @@ body {
 }
 
 
+/* =========================================
+   COMPANY
+========================================= */
+
 .company {
 
-    margin-top: 4px;
+    margin-top: 5px;
 
     color:
-        rgba(255,255,255,0.64);
+        rgba(255,255,255,0.63);
 
-    font-size: 12px;
+    font-size: 13px;
 
     line-height: 1.3;
 
@@ -414,7 +437,7 @@ body {
 
 
 /* =========================================
-   GLASS BUTTON BASE
+   GLASS BASE
 ========================================= */
 
 .action-button,
@@ -453,11 +476,12 @@ body {
 
     width: 100%;
 
-    min-height: 54px;
+    min-height: 58px;
 
-    padding: 0 16px;
+    padding:
+        0 17px;
 
-    border-radius: 18px;
+    border-radius: 19px;
 
     color: #ffffff;
 
@@ -469,7 +493,7 @@ body {
 
     font-family: inherit;
 
-    font-size: 15px;
+    font-size: 16px;
 
     font-weight: 600;
 
@@ -482,24 +506,27 @@ body {
     transition:
         transform .16s ease,
         background .16s ease,
-        border-color .16s ease,
-        box-shadow .16s ease;
+        border-color .16s ease;
 
 }
 
 
 .save-button {
 
-    margin-bottom: 11px;
+    margin-bottom: 12px;
 
 }
 
 
+/* =========================================
+   SAVE ICON
+========================================= */
+
 .icon {
 
-    width: 30px;
+    width: 32px;
 
-    height: 30px;
+    height: 32px;
 
     flex-shrink: 0;
 
@@ -516,9 +543,9 @@ body {
 
 .icon svg {
 
-    width: 22px;
+    width: 23px;
 
-    height: 22px;
+    height: 23px;
 
     fill: none;
 
@@ -544,20 +571,20 @@ body {
 
 .arrow {
 
-    font-size: 25px;
+    font-size: 27px;
 
     line-height: 1;
 
     font-weight: 300;
 
     color:
-        rgba(255,255,255,0.40);
+        rgba(255,255,255,0.42);
 
 }
 
 
 /* =========================================
-   CONTACT ROW
+   CALL / WHATSAPP / EMAIL
 ========================================= */
 
 .contact-row {
@@ -572,18 +599,18 @@ body {
             minmax(0,1fr)
         );
 
-    gap: 9px;
+    gap: 10px;
 
-    margin-bottom: 11px;
+    margin-bottom: 12px;
 
 }
 
 
 .quick-action {
 
-    min-height: 72px;
+    min-height: 78px;
 
-    border-radius: 17px;
+    border-radius: 18px;
 
     text-decoration: none;
 
@@ -597,9 +624,9 @@ body {
 
     justify-content: center;
 
-    gap: 6px;
+    gap: 7px;
 
-    font-size: 11px;
+    font-size: 12px;
 
     font-weight: 600;
 
@@ -611,11 +638,15 @@ body {
 }
 
 
+/* =========================================
+   QUICK ICON
+========================================= */
+
 .quick-icon {
 
-    width: 28px;
+    width: 30px;
 
-    height: 28px;
+    height: 30px;
 
     display: flex;
 
@@ -630,9 +661,9 @@ body {
 
 .quick-icon svg {
 
-    width: 21px;
+    width: 23px;
 
-    height: 21px;
+    height: 23px;
 
     fill: none;
 
@@ -655,13 +686,14 @@ body {
 
     width: 100%;
 
-    min-height: 60px;
+    min-height: 64px;
 
-    margin-bottom: 10px;
+    margin-bottom: 11px;
 
-    padding: 0 14px;
+    padding:
+        0 15px;
 
-    border-radius: 18px;
+    border-radius: 19px;
 
     color: #ffffff;
 
@@ -671,7 +703,7 @@ body {
 
     align-items: center;
 
-    gap: 12px;
+    gap: 13px;
 
     transition:
         transform .16s ease,
@@ -681,15 +713,19 @@ body {
 }
 
 
+/* =========================================
+   WIDE ICON
+========================================= */
+
 .wide-icon {
 
-    width: 34px;
+    width: 37px;
 
-    height: 34px;
+    height: 37px;
 
     flex-shrink: 0;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
     display: flex;
 
@@ -707,9 +743,9 @@ body {
 
 .wide-icon svg {
 
-    width: 20px;
+    width: 21px;
 
-    height: 20px;
+    height: 21px;
 
     fill: none;
 
@@ -724,6 +760,10 @@ body {
 }
 
 
+/* =========================================
+   WIDE TEXT
+========================================= */
+
 .wide-text {
 
     min-width: 0;
@@ -732,7 +772,7 @@ body {
 
     flex-direction: column;
 
-    gap: 2px;
+    gap: 3px;
 
 }
 
@@ -743,7 +783,7 @@ body {
 
     line-height: 1;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 1px;
 
     color:
         rgba(255,255,255,0.40);
@@ -753,7 +793,7 @@ body {
 
 .wide-text strong {
 
-    font-size: 13px;
+    font-size: 14px;
 
     line-height: 1.2;
 
@@ -774,7 +814,7 @@ body {
 
     flex-shrink: 0;
 
-    font-size: 24px;
+    font-size: 26px;
 
     line-height: 1;
 
@@ -787,22 +827,23 @@ body {
 
 
 /* =========================================
-   SHARE BUTTON
+   SHARE CONTACT
 ========================================= */
 
 .share-button {
 
     width: 100%;
 
-    min-height: 52px;
+    min-height: 56px;
 
     margin-top: 1px;
 
     border: none;
 
-    border-radius: 17px;
+    border-radius: 19px;
 
     background:
+
         linear-gradient(
             135deg,
             #fff200 0%,
@@ -817,11 +858,11 @@ body {
 
     justify-content: center;
 
-    gap: 9px;
+    gap: 10px;
 
     font-family: inherit;
 
-    font-size: 14px;
+    font-size: 16px;
 
     font-weight: 700;
 
@@ -832,22 +873,22 @@ body {
     appearance: none;
 
     box-shadow:
+
         0 10px 35px
         rgba(255,225,0,0.15);
 
     transition:
         transform .16s ease,
-        box-shadow .16s ease,
-        filter .16s ease;
+        box-shadow .16s ease;
 
 }
 
 
 .share-button svg {
 
-    width: 19px;
+    width: 21px;
 
-    height: 19px;
+    height: 21px;
 
     fill: none;
 
@@ -858,6 +899,30 @@ body {
     stroke-linecap: round;
 
     stroke-linejoin: round;
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+
+    margin-top: 20px;
+
+    padding-top: 0;
+
+    text-align: center;
+
+    font-size: 8px;
+
+    line-height: 1;
+
+    letter-spacing: 2.5px;
+
+    color:
+        rgba(255,255,255,0.20);
 
 }
 
@@ -881,10 +946,8 @@ body {
 
 .share-button:hover {
 
-    filter:
-        brightness(1.03);
-
     box-shadow:
+
         0 13px 40px
         rgba(255,225,0,0.20);
 
@@ -892,7 +955,7 @@ body {
 
 
 /* =========================================
-   TOUCH FEEDBACK
+   ACTIVE
 ========================================= */
 
 .action-button:active,
@@ -902,29 +965,6 @@ body {
 
     transform:
         scale(0.97);
-
-}
-
-
-.action-button:active,
-.quick-action:active,
-.wide-button:active {
-
-    background:
-        rgba(255,255,255,0.12);
-
-}
-
-
-/* =========================================
-   BUSY STATE
-========================================= */
-
-button[data-busy="true"] {
-
-    pointer-events: none;
-
-    opacity: 0.70;
 
 }
 
@@ -949,66 +989,49 @@ button[data-busy="true"] {
 
 
 /* =========================================
-   FOOTER
+   BUSY
 ========================================= */
 
-.footer {
+button[data-busy="true"] {
 
-    margin-top: auto;
+    pointer-events: none;
 
-    padding-top: 12px;
-
-    text-align: center;
-
-    font-size: 8px;
-
-    line-height: 1;
-
-    letter-spacing: 2px;
-
-    color:
-        rgba(255,255,255,0.22);
+    opacity: 0.70;
 
 }
 
 
 /* =========================================
-   TOAST SUPPORT
+   TOAST
 ========================================= */
 
 .toast-message {
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
-    -webkit-user-select:
-        none;
-
-    user-select:
-        none;
+    user-select: none;
 
 }
 
 
 /* =========================================
-   PWA STANDALONE MODE
+   PWA STANDALONE
 ========================================= */
 
 @media (display-mode: standalone) {
-
-    body {
-
-        min-height:
-            100dvh;
-
-    }
 
     .card {
 
         padding-top:
             max(
-                20px,
+                18px,
                 env(safe-area-inset-top)
+            );
+
+        padding-bottom:
+            max(
+                18px,
+                env(safe-area-inset-bottom)
             );
 
     }
@@ -1017,7 +1040,7 @@ button[data-busy="true"] {
 
 
 /* =========================================
-   IOS STANDALONE
+   IOS
 ========================================= */
 
 @supports (-webkit-touch-callout: none) {
@@ -1033,17 +1056,23 @@ button[data-busy="true"] {
 
 
 /* =========================================
-   SMALL IPHONE
+   SHORT IPHONE SCREEN
 ========================================= */
 
-@media (max-height: 720px) {
+@media (max-height: 760px) {
 
     .card {
 
         padding-top:
             max(
-                17px,
+                14px,
                 env(safe-area-inset-top)
+            );
+
+        padding-bottom:
+            max(
+                14px,
+                env(safe-area-inset-bottom)
             );
 
     }
@@ -1051,100 +1080,92 @@ button[data-busy="true"] {
 
     .logo-container {
 
-        margin-top:
-            2px;
-
-        margin-bottom:
-            7px;
+        margin-bottom: 13px;
 
     }
 
 
     .weber-logo {
 
-        width:
-            125px;
+        width: 110px;
 
-        height:
-            43px;
+        height: 48px;
 
     }
 
 
     .profile {
 
-        margin-bottom:
-            12px;
+        margin-bottom: 16px;
 
     }
 
 
     .profile-ring {
 
-        width:
-            92px;
+        width: 102px;
 
-        height:
-            92px;
+        height: 102px;
 
-        margin-bottom:
-            8px;
+        margin-bottom: 9px;
 
     }
 
 
     .profile h1 {
 
-        font-size:
-            23px;
+        font-size: 25px;
+
+        margin-bottom: 4px;
 
     }
 
 
     .position {
 
-        font-size:
-            13px;
+        font-size: 14px;
 
     }
 
 
     .company {
 
-        font-size:
-            11px;
+        font-size: 12px;
 
     }
 
 
     .action-button {
 
-        min-height:
-            50px;
+        min-height: 52px;
 
     }
 
 
     .quick-action {
 
-        min-height:
-            62px;
+        min-height: 68px;
 
     }
 
 
     .wide-button {
 
-        min-height:
-            54px;
+        min-height: 56px;
 
     }
 
 
     .share-button {
 
-        min-height:
-            48px;
+        min-height: 51px;
+
+    }
+
+
+    .footer {
+
+        margin-top: 14px;
 
     }
 
@@ -1152,143 +1173,192 @@ button[data-busy="true"] {
 
 
 /* =========================================
-   VERY SMALL SCREEN
+   VERY SHORT PHONE
 ========================================= */
 
-@media (max-height: 640px) {
+@media (max-height: 680px) {
 
     .card {
 
-        padding-right:
-            17px;
+        justify-content: flex-start;
 
-        padding-left:
-            17px;
+        padding-top:
+            max(
+                12px,
+                env(safe-area-inset-top)
+            );
 
-    }
-
-
-    .profile-ring {
-
-        width:
-            78px;
-
-        height:
-            78px;
+        padding-bottom:
+            max(
+                12px,
+                env(safe-area-inset-bottom)
+            );
 
     }
 
 
-    .profile-ring::before {
+    .logo-container {
 
-        inset:
-            -4px;
+        margin-bottom: 8px;
 
     }
 
 
-    .profile h1 {
+    .weber-logo {
 
-        font-size:
-            21px;
+        width: 100px;
+
+        height: 40px;
 
     }
 
 
     .profile {
 
-        margin-bottom:
-            9px;
+        margin-bottom: 10px;
+
+    }
+
+
+    .profile-ring {
+
+        width: 82px;
+
+        height: 82px;
+
+        margin-bottom: 7px;
+
+    }
+
+
+    .profile-ring::before {
+
+        inset: -4px;
+
+    }
+
+
+    .profile h1 {
+
+        font-size: 22px;
+
+    }
+
+
+    .position {
+
+        font-size: 12px;
+
+    }
+
+
+    .company {
+
+        font-size: 10px;
+
+    }
+
+
+    .action-button {
+
+        min-height: 48px;
 
     }
 
 
     .contact-row {
 
-        gap:
-            7px;
+        gap: 7px;
 
-        margin-bottom:
-            8px;
+        margin-bottom: 8px;
 
     }
 
 
     .quick-action {
 
-        min-height:
-            57px;
+        min-height: 57px;
 
-        border-radius:
-            15px;
+        border-radius: 15px;
 
     }
 
 
-    .quick-action span {
+    .quick-icon {
 
-        font-size:
-            10px;
+        width: 26px;
+
+        height: 26px;
+
+    }
+
+
+    .quick-icon svg {
+
+        width: 20px;
+
+        height: 20px;
+
+    }
+
+
+    .quick-action {
+
+        font-size: 10px;
 
     }
 
 
     .wide-button {
 
-        min-height:
-            49px;
+        min-height: 48px;
 
-        margin-bottom:
-            7px;
+        margin-bottom: 7px;
 
-        border-radius:
-            16px;
+        border-radius: 15px;
 
     }
 
 
     .wide-icon {
 
-        width:
-            30px;
+        width: 30px;
 
-        height:
-            30px;
+        height: 30px;
 
-        border-radius:
-            9px;
+        border-radius: 9px;
 
     }
 
 
-    .wide-text small {
+    .wide-icon svg {
 
-        font-size:
-            8px;
+        width: 18px;
+
+        height: 18px;
 
     }
 
 
     .wide-text strong {
 
-        font-size:
-            12px;
+        font-size: 12px;
 
     }
 
 
     .share-button {
 
-        min-height:
-            45px;
+        min-height: 45px;
+
+        font-size: 13px;
 
     }
 
 
     .footer {
 
-        padding-top:
-            8px;
+        margin-top: 10px;
 
     }
 
@@ -1307,133 +1377,107 @@ button[data-busy="true"] {
 
     .card {
 
-        max-width:
-            700px;
+        max-width: 700px;
 
-        padding-top:
-            15px;
+        min-height: 100dvh;
 
-        padding-bottom:
-            15px;
+        justify-content: flex-start;
+
+        padding-top: 12px;
+
+        padding-bottom: 12px;
 
     }
 
 
     .logo-container {
 
-        margin-bottom:
-            5px;
+        margin-bottom: 5px;
 
     }
 
 
     .weber-logo {
 
-        width:
-            105px;
+        width: 90px;
 
-        height:
-            35px;
+        height: 32px;
 
     }
 
 
     .profile {
 
-        margin-bottom:
-            8px;
+        margin-bottom: 7px;
 
     }
 
 
     .profile-ring {
 
-        width:
-            65px;
+        width: 62px;
 
-        height:
-            65px;
+        height: 62px;
 
-        margin-bottom:
-            5px;
-
-    }
-
-
-    .profile-ring::before {
-
-        inset:
-            -3px;
+        margin-bottom: 4px;
 
     }
 
 
     .profile h1 {
 
-        font-size:
-            19px;
+        font-size: 18px;
 
     }
 
 
     .position {
 
-        font-size:
-            11px;
+        font-size: 10px;
 
     }
 
 
     .company {
 
-        font-size:
-            10px;
+        font-size: 9px;
 
     }
 
 
     .action-button {
 
-        min-height:
-            44px;
+        min-height: 42px;
 
     }
 
 
     .quick-action {
 
-        min-height:
-            50px;
+        min-height: 48px;
 
     }
 
 
     .wide-button {
 
-        min-height:
-            45px;
+        min-height: 42px;
 
-        margin-bottom:
-            5px;
-
-    }
-
-
-    .wide-icon {
-
-        width:
-            28px;
-
-        height:
-            28px;
+        margin-bottom: 5px;
 
     }
 
 
     .share-button {
 
-        min-height:
-            42px;
+        min-height: 40px;
+
+    }
+
+
+    .footer {
+
+        margin-top: 7px;
 
     }
 
@@ -1441,26 +1485,14 @@ button[data-busy="true"] {
 
 
 /* =========================================
-   TABLET / DESKTOP
+   DESKTOP
 ========================================= */
 
 @media (min-width: 600px) {
 
-    body {
-
-        align-items:
-            center;
-
-    }
-
-
     .card {
 
-        max-width:
-            430px;
-
-        min-height:
-            100dvh;
+        max-width: 430px;
 
     }
 
@@ -1475,22 +1507,18 @@ button[data-busy="true"] {
 
     .background-glow {
 
-        animation:
-            none !important;
+        animation: none !important;
 
     }
 
 
     .card {
 
-        animation:
-            none !important;
+        animation: none !important;
 
-        opacity:
-            1;
+        opacity: 1;
 
-        transform:
-            none;
+        transform: none;
 
     }
 
@@ -1499,8 +1527,7 @@ button[data-busy="true"] {
     *::before,
     *::after {
 
-        transition:
-            none !important;
+        transition: none !important;
 
     }
 
