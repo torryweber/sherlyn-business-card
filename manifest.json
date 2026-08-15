@@ -2,18 +2,31 @@
     "name": "Sherlyn Chong | Weber",
     "short_name": "Sherlyn Chong",
     "description": "Digital business card for Sherlyn Chong, Key Account Executive at Saint-Gobain Weber & Tekbond.",
+
     "start_url": "./",
+
     "scope": "./",
+
     "display": "standalone",
+
     "orientation": "portrait",
+
     "background_color": "#061A3A",
+
     "theme_color": "#061A3A",
+
     "lang": "en-MY",
 
     "icons": [
         {
-            "src": "share-contact.png",
-            "sizes": "1200x630",
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
             "type": "image/png",
             "purpose": "any"
         }
