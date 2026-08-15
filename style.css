@@ -1,6 +1,7 @@
 /* =========================================
    SHERLYN CHONG
    DIGITAL NFC BUSINESS CARD
+   PHASE 3 — PRODUCTION CSS
    SAINT-GOBAIN WEBER & TEKBOND
 ========================================= */
 
@@ -10,39 +11,30 @@
 ========================================= */
 
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
 
     -webkit-tap-highlight-color: transparent;
-
+    -webkit-touch-callout: none;
 }
 
 
-/* =========================================
-   HTML / BODY
-========================================= */
-
 html,
 body {
-
     width: 100%;
-
     min-height: 100%;
-
 }
 
 
 html {
-
-    background:
-        #061A3A;
-
+    background: #061A3A;
 }
 
+
+/* =========================================
+   BODY
+========================================= */
 
 body {
 
@@ -55,11 +47,9 @@ body {
         "Segoe UI",
         sans-serif;
 
-    color:
-        #ffffff;
+    color: #ffffff;
 
     background:
-
         radial-gradient(
             circle at 50% -15%,
             rgba(255, 235, 0, 0.17),
@@ -79,12 +69,15 @@ body {
             #06122C 100%
         );
 
-    min-height:
-        100dvh;
+    min-height: 100dvh;
 
-    overflow-x:
-        hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    text-rendering: optimizeLegibility;
 }
 
 
@@ -94,54 +87,75 @@ body {
 
 .background-glow {
 
-    position:
-        fixed;
+    position: fixed;
 
-    width:
-        330px;
+    width: 330px;
+    height: 330px;
 
-    height:
-        330px;
+    border-radius: 50%;
 
-    border-radius:
-        50%;
+    filter: blur(95px);
 
-    filter:
-        blur(95px);
+    pointer-events: none;
 
-    pointer-events:
-        none;
+    z-index: 0;
 
-    z-index:
-        0;
-
+    will-change: transform;
 }
 
 
 .glow-yellow {
 
-    top:
-        -150px;
-
-    left:
-        -110px;
+    top: -150px;
+    left: -110px;
 
     background:
         rgba(255, 235, 0, 0.20);
 
+    animation:
+        yellowGlow 8s ease-in-out infinite alternate;
 }
 
 
 .glow-blue {
 
-    right:
-        -130px;
-
-    bottom:
-        -160px;
+    right: -130px;
+    bottom: -160px;
 
     background:
         rgba(0, 92, 255, 0.22);
+
+    animation:
+        blueGlow 10s ease-in-out infinite alternate;
+}
+
+
+/* =========================================
+   BACKGROUND ANIMATION
+========================================= */
+
+@keyframes yellowGlow {
+
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(35px, 25px, 0);
+    }
+
+}
+
+
+@keyframes blueGlow {
+
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(-30px, -25px, 0);
+    }
 
 }
 
@@ -152,20 +166,15 @@ body {
 
 .card {
 
-    position:
-        relative;
+    position: relative;
 
-    z-index:
-        2;
+    z-index: 2;
 
-    width:
-        min(100%, 430px);
+    width: min(100%, 430px);
 
-    min-height:
-        100dvh;
+    min-height: 100dvh;
 
-    margin:
-        0 auto;
+    margin: 0 auto;
 
     padding-top:
         max(
@@ -173,8 +182,7 @@ body {
             env(safe-area-inset-top)
         );
 
-    padding-right:
-        21px;
+    padding-right: 21px;
 
     padding-bottom:
         max(
@@ -182,14 +190,49 @@ body {
             env(safe-area-inset-bottom)
         );
 
-    padding-left:
-        21px;
+    padding-left: 21px;
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
+
+    opacity: 0;
+
+    transform:
+        translateY(8px);
+
+    animation:
+        cardEntrance
+        .55s
+        cubic-bezier(.22,.8,.25,1)
+        forwards;
+
+}
+
+
+/* =========================================
+   CARD ENTRANCE
+========================================= */
+
+@keyframes cardEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
 
 }
 
@@ -200,43 +243,36 @@ body {
 
 .logo-container {
 
-    width:
-        100%;
+    width: 100%;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    margin-top:
-        6px;
+    margin-top: 6px;
 
-    margin-bottom:
-        13px;
+    margin-bottom: 13px;
 
 }
 
 
 .weber-logo {
 
-    width:
-        145px;
+    width: 145px;
 
-    height:
-        55px;
+    height: 55px;
 
-    object-fit:
-        contain;
+    object-fit: contain;
 
-    object-position:
-        center;
+    object-position: center;
 
-    display:
-        block;
+    display: block;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
 
 }
 
@@ -247,37 +283,28 @@ body {
 
 .profile {
 
-    width:
-        100%;
+    width: 100%;
 
-    text-align:
-        center;
+    text-align: center;
 
-    margin-bottom:
-        18px;
+    margin-bottom: 18px;
 
 }
 
 
 .profile-ring {
 
-    width:
-        116px;
+    width: 116px;
 
-    height:
-        116px;
+    height: 116px;
 
-    padding:
-        3px;
+    padding: 3px;
 
-    margin:
-        0 auto 12px;
+    margin: 0 auto 12px;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     background:
-
         linear-gradient(
             145deg,
             #fff200 0%,
@@ -293,89 +320,95 @@ body {
         0 12px 45px
         rgba(255, 225, 0, 0.18);
 
+    position: relative;
+
+}
+
+
+.profile-ring::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -6px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255, 235, 0, 0.22);
+
+    pointer-events: none;
+
 }
 
 
 .profile-photo {
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        100%;
+    height: 100%;
 
-    display:
-        block;
+    display: block;
 
-    object-fit:
-        cover;
+    object-fit: cover;
 
-    object-position:
-        center;
+    object-position: center;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     border:
         3px solid
         #071A3D;
+
+    user-select: none;
+
+    -webkit-user-drag: none;
 
 }
 
 
 .profile h1 {
 
-    font-size:
-        27px;
+    font-size: 27px;
 
-    line-height:
-        1.08;
+    line-height: 1.08;
 
-    letter-spacing:
-        -0.7px;
+    letter-spacing: -0.7px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    color:
-        #ffffff;
+    color: #ffffff;
 
-    margin-bottom:
-        5px;
+    margin-bottom: 5px;
 
 }
 
 
 .position {
 
-    color:
-        #fff200;
+    color: #fff200;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
-    line-height:
-        1.3;
+    line-height: 1.3;
 
-    font-weight:
-        600;
+    font-weight: 600;
 
 }
 
 
 .company {
 
-    margin-top:
-        4px;
+    margin-top: 4px;
 
     color:
         rgba(255,255,255,0.64);
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    line-height:
-        1.3;
+    line-height: 1.3;
 
 }
 
@@ -418,142 +451,104 @@ body {
 
 .action-button {
 
-    width:
-        100%;
+    width: 100%;
 
-    min-height:
-        54px;
+    min-height: 54px;
 
-    padding:
-        0 16px;
+    padding: 0 16px;
 
-    border-radius:
-        18px;
+    border-radius: 18px;
 
-    color:
-        #ffffff;
+    color: #ffffff;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        11px;
+    gap: 11px;
 
-    font-family:
-        inherit;
+    font-family: inherit;
 
-    font-size:
-        15px;
+    font-size: 15px;
 
-    font-weight:
-        600;
+    font-weight: 600;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
-    -webkit-appearance:
-        none;
+    -webkit-appearance: none;
 
-    appearance:
-        none;
+    appearance: none;
 
     transition:
-
-        transform
-        .16s
-        ease,
-
-        background
-        .16s
-        ease;
+        transform .16s ease,
+        background .16s ease,
+        border-color .16s ease,
+        box-shadow .16s ease;
 
 }
 
 
 .save-button {
 
-    margin-bottom:
-        11px;
+    margin-bottom: 11px;
 
 }
 
 
 .icon {
 
-    width:
-        30px;
+    width: 30px;
 
-    height:
-        30px;
+    height: 30px;
 
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    color:
-        #fff200;
+    color: #fff200;
 
 }
 
 
 .icon svg {
 
-    width:
-        22px;
+    width: 22px;
 
-    height:
-        22px;
+    height: 22px;
 
-    fill:
-        none;
+    fill: none;
 
-    stroke:
-        currentColor;
+    stroke: currentColor;
 
-    stroke-width:
-        1.8;
+    stroke-width: 1.8;
 
-    stroke-linecap:
-        round;
+    stroke-linecap: round;
 
-    stroke-linejoin:
-        round;
+    stroke-linejoin: round;
 
 }
 
 
 .button-label {
 
-    flex:
-        1;
+    flex: 1;
 
-    text-align:
-        left;
+    text-align: left;
 
 }
 
 
 .arrow {
 
-    font-size:
-        25px;
+    font-size: 25px;
 
-    line-height:
-        1;
+    line-height: 1;
 
-    font-weight:
-        300;
+    font-weight: 300;
 
     color:
         rgba(255,255,255,0.40);
@@ -567,191 +562,142 @@ body {
 
 .contact-row {
 
-    width:
-        100%;
+    width: 100%;
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(
             3,
-            minmax(
-                0,
-                1fr
-            )
+            minmax(0,1fr)
         );
 
-    gap:
-        9px;
+    gap: 9px;
 
-    margin-bottom:
-        11px;
+    margin-bottom: 11px;
 
 }
 
 
 .quick-action {
 
-    min-height:
-        72px;
+    min-height: 72px;
 
-    border-radius:
-        17px;
+    border-radius: 17px;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
-    color:
-        #ffffff;
+    color: #ffffff;
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    gap:
-        6px;
+    gap: 6px;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    font-weight:
-        600;
+    font-weight: 600;
 
     transition:
-        transform
-        .16s
-        ease;
+        transform .16s ease,
+        background .16s ease,
+        border-color .16s ease;
 
 }
 
 
 .quick-icon {
 
-    width:
-        28px;
+    width: 28px;
 
-    height:
-        28px;
+    height: 28px;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    color:
-        #fff200;
+    color: #fff200;
 
 }
 
 
 .quick-icon svg {
 
-    width:
-        21px;
+    width: 21px;
 
-    height:
-        21px;
+    height: 21px;
 
-    fill:
-        none;
+    fill: none;
 
-    stroke:
-        currentColor;
+    stroke: currentColor;
 
-    stroke-width:
-        1.7;
+    stroke-width: 1.7;
 
-    stroke-linecap:
-        round;
+    stroke-linecap: round;
 
-    stroke-linejoin:
-        round;
+    stroke-linejoin: round;
 
 }
 
 
 /* =========================================
-   WIDE BUTTON
+   WIDE BUTTONS
 ========================================= */
 
 .wide-button {
 
-    width:
-        100%;
+    width: 100%;
 
-    min-height:
-        60px;
+    min-height: 60px;
 
-    margin-bottom:
-        10px;
+    margin-bottom: 10px;
 
-    padding:
-        0 14px;
+    padding: 0 14px;
 
-    border-radius:
-        18px;
+    border-radius: 18px;
 
-    color:
-        #ffffff;
+    color: #ffffff;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        12px;
+    gap: 12px;
 
     transition:
-        transform
-        .16s
-        ease;
+        transform .16s ease,
+        background .16s ease,
+        border-color .16s ease;
 
 }
 
 
 .wide-icon {
 
-    width:
-        34px;
+    width: 34px;
 
-    height:
-        34px;
+    height: 34px;
 
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 
-    border-radius:
-        11px;
+    border-radius: 11px;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    color:
-        #fff200;
+    color: #fff200;
 
     background:
         rgba(255,235,0,0.11);
@@ -761,57 +707,43 @@ body {
 
 .wide-icon svg {
 
-    width:
-        20px;
+    width: 20px;
 
-    height:
-        20px;
+    height: 20px;
 
-    fill:
-        none;
+    fill: none;
 
-    stroke:
-        currentColor;
+    stroke: currentColor;
 
-    stroke-width:
-        1.7;
+    stroke-width: 1.7;
 
-    stroke-linecap:
-        round;
+    stroke-linecap: round;
 
-    stroke-linejoin:
-        round;
+    stroke-linejoin: round;
 
 }
 
 
 .wide-text {
 
-    min-width:
-        0;
+    min-width: 0;
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
 
-    gap:
-        2px;
+    gap: 2px;
 
 }
 
 
 .wide-text small {
 
-    font-size:
-        9px;
+    font-size: 9px;
 
-    line-height:
-        1;
+    line-height: 1;
 
-    letter-spacing:
-        0.8px;
+    letter-spacing: 0.8px;
 
     color:
         rgba(255,255,255,0.40);
@@ -821,43 +753,32 @@ body {
 
 .wide-text strong {
 
-    font-size:
-        13px;
+    font-size: 13px;
 
-    line-height:
-        1.2;
+    line-height: 1.2;
 
-    font-weight:
-        600;
+    font-weight: 600;
 
-    white-space:
-        nowrap;
+    white-space: nowrap;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    text-overflow:
-        ellipsis;
+    text-overflow: ellipsis;
 
 }
 
 
 .wide-arrow {
 
-    margin-left:
-        auto;
+    margin-left: auto;
 
-    flex-shrink:
-        0;
+    flex-shrink: 0;
 
-    font-size:
-        24px;
+    font-size: 24px;
 
-    line-height:
-        1;
+    line-height: 1;
 
-    font-weight:
-        300;
+    font-weight: 300;
 
     color:
         rgba(255,255,255,0.38);
@@ -871,97 +792,101 @@ body {
 
 .share-button {
 
-    width:
-        100%;
+    width: 100%;
 
-    min-height:
-        52px;
+    min-height: 52px;
 
-    margin-top:
-        1px;
+    margin-top: 1px;
 
-    border:
-        none;
+    border: none;
 
-    border-radius:
-        17px;
+    border-radius: 17px;
 
     background:
-
         linear-gradient(
             135deg,
             #fff200 0%,
             #ffd900 100%
         );
 
-    color:
-        #06122C;
+    color: #06122C;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    gap:
-        9px;
+    gap: 9px;
 
-    font-family:
-        inherit;
+    font-family: inherit;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
-    -webkit-appearance:
-        none;
+    -webkit-appearance: none;
 
-    appearance:
-        none;
+    appearance: none;
 
     box-shadow:
-
         0 10px 35px
         rgba(255,225,0,0.15);
 
     transition:
-        transform
-        .16s
-        ease;
+        transform .16s ease,
+        box-shadow .16s ease,
+        filter .16s ease;
 
 }
 
 
 .share-button svg {
 
-    width:
-        19px;
+    width: 19px;
 
-    height:
-        19px;
+    height: 19px;
 
-    fill:
-        none;
+    fill: none;
 
-    stroke:
-        currentColor;
+    stroke: currentColor;
 
-    stroke-width:
-        1.8;
+    stroke-width: 1.8;
 
-    stroke-linecap:
-        round;
+    stroke-linecap: round;
 
-    stroke-linejoin:
-        round;
+    stroke-linejoin: round;
+
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.action-button:hover,
+.quick-action:hover,
+.wide-button:hover {
+
+    background:
+        rgba(255,255,255,0.09);
+
+    border-color:
+        rgba(255,255,255,0.16);
+
+}
+
+
+.share-button:hover {
+
+    filter:
+        brightness(1.03);
+
+    box-shadow:
+        0 13px 40px
+        rgba(255,225,0,0.20);
 
 }
 
@@ -981,12 +906,25 @@ body {
 }
 
 
-.action-button:hover,
-.quick-action:hover,
-.wide-button:hover {
+.action-button:active,
+.quick-action:active,
+.wide-button:active {
 
     background:
-        rgba(255,255,255,0.09);
+        rgba(255,255,255,0.12);
+
+}
+
+
+/* =========================================
+   BUSY STATE
+========================================= */
+
+button[data-busy="true"] {
+
+    pointer-events: none;
+
+    opacity: 0.70;
 
 }
 
@@ -1005,7 +943,7 @@ body {
         #fff200;
 
     outline-offset:
-        2px;
+        3px;
 
 }
 
@@ -1016,26 +954,80 @@ body {
 
 .footer {
 
-    margin-top:
-        auto;
+    margin-top: auto;
 
-    padding-top:
-        12px;
+    padding-top: 12px;
 
-    text-align:
-        center;
+    text-align: center;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    line-height:
-        1;
+    line-height: 1;
 
-    letter-spacing:
-        2px;
+    letter-spacing: 2px;
 
     color:
         rgba(255,255,255,0.22);
+
+}
+
+
+/* =========================================
+   TOAST SUPPORT
+========================================= */
+
+.toast-message {
+
+    pointer-events:
+        none;
+
+    -webkit-user-select:
+        none;
+
+    user-select:
+        none;
+
+}
+
+
+/* =========================================
+   PWA STANDALONE MODE
+========================================= */
+
+@media (display-mode: standalone) {
+
+    body {
+
+        min-height:
+            100dvh;
+
+    }
+
+    .card {
+
+        padding-top:
+            max(
+                20px,
+                env(safe-area-inset-top)
+            );
+
+    }
+
+}
+
+
+/* =========================================
+   IOS STANDALONE
+========================================= */
+
+@supports (-webkit-touch-callout: none) {
+
+    body {
+
+        min-height:
+            -webkit-fill-available;
+
+    }
 
 }
 
@@ -1045,7 +1037,6 @@ body {
 ========================================= */
 
 @media (max-height: 720px) {
-
 
     .card {
 
@@ -1166,7 +1157,6 @@ body {
 
 @media (max-height: 640px) {
 
-
     .card {
 
         padding-right:
@@ -1185,6 +1175,14 @@ body {
 
         height:
             78px;
+
+    }
+
+
+    .profile-ring::before {
+
+        inset:
+            -4px;
 
     }
 
@@ -1257,6 +1255,25 @@ body {
         height:
             30px;
 
+        border-radius:
+            9px;
+
+    }
+
+
+    .wide-text small {
+
+        font-size:
+            8px;
+
+    }
+
+
+    .wide-text strong {
+
+        font-size:
+            12px;
+
     }
 
 
@@ -1287,7 +1304,6 @@ body {
 ) and (
     max-height: 520px
 ) {
-
 
     .card {
 
@@ -1344,6 +1360,14 @@ body {
     }
 
 
+    .profile-ring::before {
+
+        inset:
+            -3px;
+
+    }
+
+
     .profile h1 {
 
         font-size:
@@ -1395,10 +1419,48 @@ body {
     }
 
 
+    .wide-icon {
+
+        width:
+            28px;
+
+        height:
+            28px;
+
+    }
+
+
     .share-button {
 
         min-height:
             42px;
+
+    }
+
+}
+
+
+/* =========================================
+   TABLET / DESKTOP
+========================================= */
+
+@media (min-width: 600px) {
+
+    body {
+
+        align-items:
+            center;
+
+    }
+
+
+    .card {
+
+        max-width:
+            430px;
+
+        min-height:
+            100dvh;
 
     }
 
@@ -1411,15 +1473,33 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
 
+    .background-glow {
+
+        animation:
+            none !important;
+
+    }
+
+
+    .card {
+
+        animation:
+            none !important;
+
+        opacity:
+            1;
+
+        transform:
+            none;
+
+    }
+
 
     *,
     *::before,
     *::after {
 
         transition:
-            none !important;
-
-        animation:
             none !important;
 
     }
