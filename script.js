@@ -1,21 +1,17 @@
 /* =========================================
    SHERLYN CHONG
    DIGITAL NFC BUSINESS CARD
-   PHASE 1
+   PHASE 3
+   PRODUCTION JAVASCRIPT
 ========================================= */
 
 
 /* =========================================
-   CARD URL
+   CARD CONFIGURATION
 ========================================= */
 
 const CARD_URL =
     "https://torryweber.github.io/sherlyn-business-card/";
-
-
-/* =========================================
-   SHARE IMAGE
-========================================= */
 
 const SHARE_IMAGE =
     "share-contact.png";
@@ -61,14 +57,13 @@ const contact = {
 
 
 /* =========================================
-   BUTTONS
+   DOM
 ========================================= */
 
 const saveContactButton =
     document.getElementById(
         "saveContact"
     );
-
 
 const shareButton =
     document.getElementById(
@@ -77,10 +72,76 @@ const shareButton =
 
 
 /* =========================================
+   APP INITIALIZATION
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializeCard
+);
+
+
+function initializeCard() {
+
+    /*
+     * Add loaded class.
+     */
+
+    document.body.classList.add(
+        "card-ready"
+    );
+
+
+    /*
+     * Setup contact button.
+     */
+
+    setupSaveContact();
+
+
+    /*
+     * Setup share button.
+     */
+
+    setupShare();
+
+
+    /*
+     * Setup service worker.
+     */
+
+    registerServiceWorker();
+
+
+    /*
+     * Setup external links.
+     */
+
+    setupExternalLinks();
+
+
+    /*
+     * Prevent accidental
+     * double taps.
+     */
+
+    preventDoubleTapZoom();
+
+}
+
+
+/* =========================================
    SAVE CONTACT
 ========================================= */
 
-if (saveContactButton) {
+function setupSaveContact() {
+
+    if (!saveContactButton) {
+
+        return;
+
+    }
+
 
     saveContactButton.addEventListener(
         "click",
@@ -92,21 +153,45 @@ if (saveContactButton) {
 
 function saveContact() {
 
+    /*
+     * Prevent repeated clicks.
+     */
+
+    if (
+        saveContactButton.dataset.busy ===
+        "true"
+    ) {
+
+        return;
+
+    }
+
+
+    saveContactButton.dataset.busy =
+        "true";
+
+
+    /*
+     * Create iPhone-compatible VCard.
+     */
+
     const vcard = [
 
         "BEGIN:VCARD",
 
         "VERSION:3.0",
 
-        `N:${contact.lastName};${contact.firstName};;;`,
+        `N:${escapeVCF(contact.lastName)};${escapeVCF(contact.firstName)};;;`,
 
-        `FN:${contact.fullName}`,
+        `FN:${escapeVCF(contact.fullName)}`,
 
-        `ORG:${contact.company}`,
+        `ORG:${escapeVCF(contact.company)}`,
 
-        `TITLE:${contact.jobTitle}`,
+        `TITLE:${escapeVCF(contact.jobTitle)}`,
 
         `TEL;TYPE=CELL,VOICE:${contact.phone}`,
+
+        `TEL;TYPE=WORK,VOICE:${contact.phone}`,
 
         `EMAIL;TYPE=WORK:${contact.email}`,
 
@@ -116,6 +201,10 @@ function saveContact() {
 
     ].join("\r\n");
 
+
+    /*
+     * Create VCF file.
+     */
 
     const blob =
         new Blob(
@@ -146,6 +235,10 @@ function saveContact() {
         "Sherlyn-Chong.vcf";
 
 
+    link.style.display =
+        "none";
+
+
     document.body.appendChild(
         link
     );
@@ -154,10 +247,12 @@ function saveContact() {
     link.click();
 
 
-    document.body.removeChild(
-        link
-    );
+    link.remove();
 
+
+    /*
+     * Release memory.
+     */
 
     setTimeout(
         () => {
@@ -167,17 +262,75 @@ function saveContact() {
             );
 
         },
-        1000
+        1500
+    );
+
+
+    /*
+     * Feedback.
+     */
+
+    showToast(
+        "Contact ready to save"
+    );
+
+
+    setTimeout(
+        () => {
+
+            saveContactButton.dataset.busy =
+                "false";
+
+        },
+        1200
     );
 
 }
 
 
 /* =========================================
-   SHARE CONTACT
+   VCF ESCAPE
 ========================================= */
 
-if (shareButton) {
+function escapeVCF(value) {
+
+    return String(value)
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /;/g,
+            "\\;"
+        )
+
+        .replace(
+            /,/g,
+            "\\,"
+        )
+
+        .replace(
+            /\n/g,
+            "\\n"
+        );
+
+}
+
+
+/* =========================================
+   SHARE
+========================================= */
+
+function setupShare() {
+
+    if (!shareButton) {
+
+        return;
+
+    }
+
 
     shareButton.addEventListener(
         "click",
@@ -187,17 +340,27 @@ if (shareButton) {
 }
 
 
-/* =========================================
-   SHARE CONTACT
-========================================= */
-
 async function shareContact() {
+
+    if (
+        shareButton.dataset.busy ===
+        "true"
+    ) {
+
+        return;
+
+    }
+
+
+    shareButton.dataset.busy =
+        "true";
+
 
     try {
 
         /*
-         * Load the REAL pre-created
-         * contact image.
+         * Get the actual
+         * pre-created image.
          */
 
         const response =
@@ -213,7 +376,7 @@ async function shareContact() {
         if (!response.ok) {
 
             throw new Error(
-                "Share image not found."
+                "Share image unavailable."
             );
 
         }
@@ -224,7 +387,7 @@ async function shareContact() {
 
 
         /*
-         * Create shareable file
+         * Convert to File.
          */
 
         const imageFile =
@@ -239,18 +402,19 @@ async function shareContact() {
 
 
         /*
-         * Share text
+         * Share message.
          */
 
         const shareText =
-            "Sherlyn Chong\n" +
-            "Key Account Executive\n" +
-            "Saint-Gobain Weber & Tekbond";
+            `${contact.fullName}\n` +
+            `${contact.jobTitle}\n` +
+            `${contact.company}`;
 
 
         /*
-         * iPhone / Android:
-         * Share IMAGE + URL
+         * Best case:
+         * iPhone / Android supports
+         * image file sharing.
          */
 
         if (
@@ -265,7 +429,7 @@ async function shareContact() {
             await navigator.share({
 
                 title:
-                    "Sherlyn Chong",
+                    contact.fullName,
 
                 text:
                     shareText,
@@ -278,14 +442,14 @@ async function shareContact() {
 
             });
 
+
             return;
 
         }
 
 
         /*
-         * Browser can share URL
-         * but not files.
+         * URL-only share fallback.
          */
 
         if (
@@ -295,17 +459,16 @@ async function shareContact() {
             await navigator.share({
 
                 title:
-                    "Sherlyn Chong",
+                    contact.fullName,
 
                 text:
-                    shareText +
-                    "\n\n" +
-                    CARD_URL,
+                    `${shareText}\n\n${CARD_URL}`,
 
                 url:
                     CARD_URL
 
             });
+
 
             return;
 
@@ -313,30 +476,29 @@ async function shareContact() {
 
 
         /*
-         * Desktop / unsupported:
-         * download picture + copy URL.
+         * Desktop fallback.
          */
 
-        downloadImage(
+        downloadShareImage(
             blob
         );
 
 
-        await copyURL();
+        await copyText(
+            CARD_URL
+        );
+
+
+        showToast(
+            "Contact image downloaded"
+        );
 
     }
 
     catch (error) {
 
-        console.error(
-            "Share error:",
-            error
-        );
-
-
         /*
-         * If share was cancelled,
-         * don't show an error.
+         * User cancelled share.
          */
 
         if (
@@ -350,11 +512,50 @@ async function shareContact() {
         }
 
 
+        console.error(
+            "Share error:",
+            error
+        );
+
+
         /*
-         * Fallback.
+         * Final fallback.
          */
 
-        fallbackShare();
+        try {
+
+            await copyText(
+                CARD_URL
+            );
+
+
+            showToast(
+                "Card link copied"
+            );
+
+        }
+
+        catch {
+
+            alert(
+                CARD_URL
+            );
+
+        }
+
+    }
+
+    finally {
+
+        setTimeout(
+            () => {
+
+                shareButton.dataset.busy =
+                    "false";
+
+            },
+            800
+        );
 
     }
 
@@ -365,7 +566,7 @@ async function shareContact() {
    DOWNLOAD SHARE IMAGE
 ========================================= */
 
-function downloadImage(
+function downloadShareImage(
     blob
 ) {
 
@@ -388,6 +589,10 @@ function downloadImage(
         "Sherlyn-Chong-Contact.png";
 
 
+    link.style.display =
+        "none";
+
+
     document.body.appendChild(
         link
     );
@@ -396,9 +601,7 @@ function downloadImage(
     link.click();
 
 
-    document.body.removeChild(
-        link
-    );
+    link.remove();
 
 
     setTimeout(
@@ -409,51 +612,43 @@ function downloadImage(
             );
 
         },
-        1000
+        1500
     );
 
 }
 
 
 /* =========================================
-   COPY URL
+   COPY TEXT
 ========================================= */
 
-async function copyURL() {
+async function copyText(
+    text
+) {
 
-    try {
+    /*
+     * Modern Clipboard API.
+     */
+
+    if (
+        navigator.clipboard &&
+        window.isSecureContext
+    ) {
 
         await navigator
             .clipboard
             .writeText(
-                CARD_URL
+                text
             );
 
-
-        showToast(
-            "Card link copied"
-        );
+        return;
 
     }
 
-    catch (error) {
 
-        fallbackCopy(
-            CARD_URL
-        );
-
-    }
-
-}
-
-
-/* =========================================
-   FALLBACK COPY
-========================================= */
-
-function fallbackCopy(
-    text
-) {
+    /*
+     * Legacy fallback.
+     */
 
     const textarea =
         document.createElement(
@@ -465,12 +660,17 @@ function fallbackCopy(
         text;
 
 
+    textarea.setAttribute(
+        "readonly",
+        ""
+    );
+
+
     textarea.style.position =
         "fixed";
 
-
-    textarea.style.opacity =
-        "0";
+    textarea.style.left =
+        "-9999px";
 
 
     document.body.appendChild(
@@ -481,60 +681,19 @@ function fallbackCopy(
     textarea.select();
 
 
-    try {
-
+    const successful =
         document.execCommand(
             "copy"
         );
 
 
-        showToast(
-            "Card link copied"
-        );
-
-    }
-
-    catch (error) {
-
-        alert(
-            text
-        );
-
-    }
+    textarea.remove();
 
 
-    document.body.removeChild(
-        textarea
-    );
+    if (!successful) {
 
-}
-
-
-/* =========================================
-   FALLBACK SHARE
-========================================= */
-
-async function fallbackShare() {
-
-    try {
-
-        await navigator
-            .clipboard
-            .writeText(
-                CARD_URL
-            );
-
-
-        showToast(
-            "Card link copied"
-        );
-
-    }
-
-    catch (error) {
-
-        alert(
-            CARD_URL
+        throw new Error(
+            "Copy failed."
         );
 
     }
@@ -588,13 +747,13 @@ function showToast(
                 "50%",
 
             bottom:
-                "30px",
+                "calc(25px + env(safe-area-inset-bottom))",
 
             transform:
                 "translateX(-50%)",
 
             zIndex:
-                "9999",
+                "99999",
 
             padding:
                 "12px 18px",
@@ -603,7 +762,7 @@ function showToast(
                 "14px",
 
             background:
-                "rgba(15,25,50,.94)",
+                "rgba(10,22,48,.94)",
 
             color:
                 "#ffffff",
@@ -614,19 +773,29 @@ function showToast(
             fontWeight:
                 "600",
 
+            whiteSpace:
+                "nowrap",
+
             border:
                 "1px solid rgba(255,255,255,.12)",
 
             boxShadow:
-                "0 10px 30px rgba(0,0,0,.30)",
+                "0 12px 35px rgba(0,0,0,.30)",
 
             backdropFilter:
                 "blur(20px)",
 
             WebkitBackdropFilter:
-                "blur(20px)"
+                "blur(20px)",
+
+            opacity:
+                "0",
+
+            transition:
+                "opacity .2s ease"
 
         }
+
     );
 
 
@@ -635,13 +804,200 @@ function showToast(
     );
 
 
+    requestAnimationFrame(
+        () => {
+
+            toast.style.opacity =
+                "1";
+
+        }
+    );
+
+
     setTimeout(
         () => {
 
-            toast.remove();
+            toast.style.opacity =
+                "0";
+
+
+            setTimeout(
+                () => {
+
+                    toast.remove();
+
+                },
+                250
+            );
 
         },
-        2200
+        2000
     );
 
 }
+
+
+/* =========================================
+   EXTERNAL LINKS
+========================================= */
+
+function setupExternalLinks() {
+
+    const links =
+        document.querySelectorAll(
+            'a[target="_blank"]'
+        );
+
+
+    links.forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    link.style.transform =
+                        "scale(.98)";
+
+
+                    setTimeout(
+                        () => {
+
+                            link.style.transform =
+                                "";
+
+                        },
+                        150
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   SERVICE WORKER
+========================================= */
+
+function registerServiceWorker() {
+
+    if (
+        !("serviceWorker" in navigator)
+    ) {
+
+        return;
+
+    }
+
+
+    window.addEventListener(
+        "load",
+        async () => {
+
+            try {
+
+                const registration =
+                    await navigator
+                        .serviceWorker
+                        .register(
+                            "./sw.js"
+                        );
+
+
+                console.log(
+                    "Sherlyn Card PWA ready:",
+                    registration.scope
+                );
+
+
+                /*
+                 * Check for a new version.
+                 */
+
+                registration.update();
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "PWA registration failed:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PREVENT DOUBLE TAP ZOOM
+========================================= */
+
+function preventDoubleTapZoom() {
+
+    let lastTouchEnd =
+        0;
+
+
+    document.addEventListener(
+        "touchend",
+        event => {
+
+            const now =
+                Date.now();
+
+
+            if (
+                now -
+                lastTouchEnd <=
+                280
+            ) {
+
+                event.preventDefault();
+
+            }
+
+
+            lastTouchEnd =
+                now;
+
+        },
+        {
+            passive:
+                false
+        }
+    );
+
+}
+
+
+/* =========================================
+   VISIBILITY / RETURN TO CARD
+========================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            document.body.classList.add(
+                "card-active"
+            );
+
+        }
+
+    }
+);
