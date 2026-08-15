@@ -1,20 +1,24 @@
 /* =========================================
    SHERLYN CHONG
    DIGITAL NFC BUSINESS CARD
-   PHASE 3
    PRODUCTION JAVASCRIPT
 ========================================= */
 
 
 /* =========================================
-   CARD CONFIGURATION
+   CARD URL
 ========================================= */
 
 const CARD_URL =
     "https://torryweber.github.io/sherlyn-business-card/";
 
+
+/* =========================================
+   SHARE PREVIEW IMAGE
+========================================= */
+
 const SHARE_IMAGE =
-    "share-contact.png";
+    "share-preview.png";
 
 
 /* =========================================
@@ -72,7 +76,7 @@ const shareButton =
 
 
 /* =========================================
-   APP INITIALIZATION
+   INITIALIZE
 ========================================= */
 
 document.addEventListener(
@@ -83,47 +87,18 @@ document.addEventListener(
 
 function initializeCard() {
 
-    /*
-     * Add loaded class.
-     */
-
     document.body.classList.add(
         "card-ready"
     );
 
 
-    /*
-     * Setup contact button.
-     */
-
     setupSaveContact();
-
-
-    /*
-     * Setup share button.
-     */
 
     setupShare();
 
-
-    /*
-     * Setup service worker.
-     */
-
     registerServiceWorker();
 
-
-    /*
-     * Setup external links.
-     */
-
     setupExternalLinks();
-
-
-    /*
-     * Prevent accidental
-     * double taps.
-     */
 
     preventDoubleTapZoom();
 
@@ -153,10 +128,6 @@ function setupSaveContact() {
 
 function saveContact() {
 
-    /*
-     * Prevent repeated clicks.
-     */
-
     if (
         saveContactButton.dataset.busy ===
         "true"
@@ -170,10 +141,6 @@ function saveContact() {
     saveContactButton.dataset.busy =
         "true";
 
-
-    /*
-     * Create iPhone-compatible VCard.
-     */
 
     const vcard = [
 
@@ -201,10 +168,6 @@ function saveContact() {
 
     ].join("\r\n");
 
-
-    /*
-     * Create VCF file.
-     */
 
     const blob =
         new Blob(
@@ -234,7 +197,6 @@ function saveContact() {
     link.download =
         "Sherlyn-Chong.vcf";
 
-
     link.style.display =
         "none";
 
@@ -250,10 +212,6 @@ function saveContact() {
     link.remove();
 
 
-    /*
-     * Release memory.
-     */
-
     setTimeout(
         () => {
 
@@ -265,10 +223,6 @@ function saveContact() {
         1500
     );
 
-
-    /*
-     * Feedback.
-     */
 
     showToast(
         "Contact ready to save"
@@ -320,7 +274,7 @@ function escapeVCF(value) {
 
 
 /* =========================================
-   SHARE
+   SHARE CONTACT
 ========================================= */
 
 function setupShare() {
@@ -359,8 +313,8 @@ async function shareContact() {
     try {
 
         /*
-         * Get the actual
-         * pre-created image.
+         * Load the single
+         * share-preview.png.
          */
 
         const response =
@@ -376,7 +330,7 @@ async function shareContact() {
         if (!response.ok) {
 
             throw new Error(
-                "Share image unavailable."
+                "Share preview image unavailable."
             );
 
         }
@@ -387,13 +341,13 @@ async function shareContact() {
 
 
         /*
-         * Convert to File.
+         * Convert image to File.
          */
 
         const imageFile =
             new File(
                 [blob],
-                "Sherlyn-Chong-Contact.png",
+                "Sherlyn-Chong-Share.png",
                 {
                     type:
                         "image/png"
@@ -402,7 +356,7 @@ async function shareContact() {
 
 
         /*
-         * Share message.
+         * Text shown with sharing.
          */
 
         const shareText =
@@ -412,9 +366,8 @@ async function shareContact() {
 
 
         /*
-         * Best case:
-         * iPhone / Android supports
-         * image file sharing.
+         * iPhone / Android:
+         * Share image + URL.
          */
 
         if (
@@ -449,7 +402,7 @@ async function shareContact() {
 
 
         /*
-         * URL-only share fallback.
+         * URL sharing fallback.
          */
 
         if (
@@ -490,7 +443,7 @@ async function shareContact() {
 
 
         showToast(
-            "Contact image downloaded"
+            "Card preview downloaded"
         );
 
     }
@@ -498,7 +451,7 @@ async function shareContact() {
     catch (error) {
 
         /*
-         * User cancelled share.
+         * User cancelled.
          */
 
         if (
@@ -519,7 +472,8 @@ async function shareContact() {
 
 
         /*
-         * Final fallback.
+         * Final fallback:
+         * copy card URL.
          */
 
         try {
@@ -563,7 +517,7 @@ async function shareContact() {
 
 
 /* =========================================
-   DOWNLOAD SHARE IMAGE
+   DOWNLOAD PREVIEW
 ========================================= */
 
 function downloadShareImage(
@@ -586,7 +540,7 @@ function downloadShareImage(
         url;
 
     link.download =
-        "Sherlyn-Chong-Contact.png";
+        "Sherlyn-Chong-Share.png";
 
 
     link.style.display =
@@ -619,16 +573,12 @@ function downloadShareImage(
 
 
 /* =========================================
-   COPY TEXT
+   COPY
 ========================================= */
 
 async function copyText(
     text
 ) {
-
-    /*
-     * Modern Clipboard API.
-     */
 
     if (
         navigator.clipboard &&
@@ -646,10 +596,6 @@ async function copyText(
     }
 
 
-    /*
-     * Legacy fallback.
-     */
-
     const textarea =
         document.createElement(
             "textarea"
@@ -659,12 +605,10 @@ async function copyText(
     textarea.value =
         text;
 
-
     textarea.setAttribute(
         "readonly",
         ""
     );
-
 
     textarea.style.position =
         "fixed";
@@ -914,12 +858,7 @@ function registerServiceWorker() {
                 );
 
 
-                /*
-                 * Check for a new version.
-                 */
-
                 registration.update();
-
 
             }
 
@@ -981,7 +920,7 @@ function preventDoubleTapZoom() {
 
 
 /* =========================================
-   VISIBILITY / RETURN TO CARD
+   VISIBILITY
 ========================================= */
 
 document.addEventListener(
