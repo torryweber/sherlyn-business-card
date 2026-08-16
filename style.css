@@ -1,7 +1,7 @@
 /* =========================================
    SHERLYN CHONG
-   DIGITAL NFC BUSINESS CARD
-   FINAL PREMIUM LAYOUT
+   DIGITAL BUSINESS CARD
+   WEBER / SAINT-GOBAIN
 ========================================= */
 
 
@@ -10,33 +10,33 @@
 ========================================= */
 
 * {
-
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
 
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
-
 }
 
+
+/* =========================================
+   HTML
+========================================= */
 
 html {
-
     width: 100%;
-
     min-height: 100%;
-
     background: #061A3A;
-
 }
 
+
+/* =========================================
+   BODY
+========================================= */
 
 body {
 
     width: 100%;
-
     min-height: 100dvh;
 
     font-family:
@@ -72,15 +72,12 @@ body {
         );
 
     overflow-x: hidden;
-
     overflow-y: auto;
 
     -webkit-font-smoothing: antialiased;
-
     -moz-osx-font-smoothing: grayscale;
 
     text-rendering: optimizeLegibility;
-
 }
 
 
@@ -93,7 +90,6 @@ body {
     position: fixed;
 
     width: 340px;
-
     height: 340px;
 
     border-radius: 50%;
@@ -103,31 +99,26 @@ body {
     pointer-events: none;
 
     z-index: 0;
-
 }
 
 
 .glow-yellow {
 
     top: -180px;
-
     left: -150px;
 
     background:
         rgba(255, 235, 0, 0.18);
-
 }
 
 
 .glow-blue {
 
     right: -150px;
-
     bottom: -180px;
 
     background:
         rgba(0, 92, 255, 0.20);
-
 }
 
 
@@ -141,10 +132,7 @@ body {
 
     z-index: 2;
 
-    width: min(
-        100%,
-        430px
-    );
+    width: min(100%, 430px);
 
     min-height: 100dvh;
 
@@ -182,7 +170,6 @@ body {
         .55s
         cubic-bezier(.22,.8,.25,1)
         forwards;
-
 }
 
 
@@ -198,7 +185,6 @@ body {
 
         transform:
             translateY(8px);
-
     }
 
     to {
@@ -207,9 +193,7 @@ body {
 
         transform:
             translateY(0);
-
     }
-
 }
 
 
@@ -229,26 +213,23 @@ body {
 
     margin-top: 0;
 
-    margin-bottom: 17px;
-
+    margin-bottom: 14px;
 }
 
 
 /*
-   IMPORTANT:
+   LARGE WEBER LOGO
 
-   Increased from the previous
-   120px to 175px.
-
-   This gives the Weber logo
-   a much stronger visual presence.
+   Increased significantly so the
+   Weber branding has similar visual
+   importance to the profile picture.
 */
 
 .weber-logo {
 
-    width: 175px;
+    width: 220px;
 
-    height: 82px;
+    height: 100px;
 
     object-fit: contain;
 
@@ -260,6 +241,14 @@ body {
 
     -webkit-user-drag: none;
 
+    /*
+       Convert the existing dark logo
+       artwork to white.
+    */
+
+    filter:
+        brightness(0)
+        invert(1);
 }
 
 
@@ -274,7 +263,6 @@ body {
     text-align: center;
 
     margin-bottom: 21px;
-
 }
 
 
@@ -313,7 +301,6 @@ body {
         rgba(255,225,0,0.18);
 
     position: relative;
-
 }
 
 
@@ -332,9 +319,12 @@ body {
         rgba(255,235,0,0.22);
 
     pointer-events: none;
-
 }
 
+
+/* =========================================
+   PROFILE PHOTO
+========================================= */
 
 .profile-photo {
 
@@ -357,7 +347,6 @@ body {
     user-select: none;
 
     -webkit-user-drag: none;
-
 }
 
 
@@ -378,7 +367,6 @@ body {
     color: #ffffff;
 
     margin-bottom: 6px;
-
 }
 
 
@@ -395,7 +383,6 @@ body {
     line-height: 1.3;
 
     font-weight: 600;
-
 }
 
 
@@ -413,7 +400,6 @@ body {
     font-size: 13px;
 
     line-height: 1.3;
-
 }
 
 
@@ -445,7 +431,6 @@ body {
 
         0 10px 30px
         rgba(0,0,0,0.10);
-
 }
 
 
@@ -481,21 +466,17 @@ body {
     cursor: pointer;
 
     -webkit-appearance: none;
-
     appearance: none;
 
     transition:
         transform .16s ease,
         background .16s ease,
         border-color .16s ease;
-
 }
 
 
 .save-button {
-
     margin-bottom: 12px;
-
 }
 
 
@@ -506,7 +487,6 @@ body {
 .icon {
 
     width: 32px;
-
     height: 32px;
 
     flex-shrink: 0;
@@ -514,18 +494,15 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     color: #fff200;
-
 }
 
 
 .icon svg {
 
     width: 23px;
-
     height: 23px;
 
     fill: none;
@@ -535,9 +512,7 @@ body {
     stroke-width: 1.8;
 
     stroke-linecap: round;
-
     stroke-linejoin: round;
-
 }
 
 
@@ -546,7 +521,6 @@ body {
     flex: 1;
 
     text-align: left;
-
 }
 
 
@@ -560,12 +534,11 @@ body {
 
     color:
         rgba(255,255,255,0.42);
-
 }
 
 
 /* =========================================
-   CONTACT ROW
+   CALL / WHATSAPP / EMAIL
 ========================================= */
 
 .contact-row {
@@ -575,15 +548,11 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            minmax(0,1fr)
-        );
+        repeat(3, minmax(0, 1fr));
 
     gap: 10px;
 
     margin-bottom: 12px;
-
 }
 
 
@@ -619,7 +588,6 @@ body {
         transform .16s ease,
         background .16s ease,
         border-color .16s ease;
-
 }
 
 
@@ -640,13 +608,8 @@ body {
     justify-content: center;
 
     color: #fff200;
-
 }
 
-
-/* =========================================
-   STANDARD QUICK SVG
-========================================= */
 
 .quick-icon svg {
 
@@ -663,18 +626,12 @@ body {
     stroke-linecap: round;
 
     stroke-linejoin: round;
-
 }
 
 
 /* =========================================
    WHATSAPP ICON
 ========================================= */
-
-/*
-   Make WhatsApp visually closer
-   to the familiar WhatsApp symbol.
-*/
 
 .whatsapp-icon {
 
@@ -683,7 +640,6 @@ body {
     height: 32px;
 
     color: #fff200;
-
 }
 
 
@@ -694,13 +650,10 @@ body {
     height: 29px;
 
     overflow: visible;
-
 }
 
 
-/*
-   Outer WhatsApp speech circle.
-*/
+/* WhatsApp circular speech outline */
 
 .whatsapp-circle {
 
@@ -713,24 +666,16 @@ body {
     stroke-linecap: round;
 
     stroke-linejoin: round;
-
 }
 
 
-/*
-   WhatsApp phone handset.
-
-   Filled shape makes it much
-   more recognizable than the
-   previous thin line.
-*/
+/* WhatsApp handset */
 
 .whatsapp-phone {
 
     fill: currentColor;
 
     stroke: none;
-
 }
 
 
@@ -765,7 +710,6 @@ body {
         transform .16s ease,
         background .16s ease,
         border-color .16s ease;
-
 }
 
 
@@ -776,7 +720,6 @@ body {
 .wide-icon {
 
     width: 37px;
-
     height: 37px;
 
     flex-shrink: 0;
@@ -793,14 +736,12 @@ body {
 
     background:
         rgba(255,235,0,0.11);
-
 }
 
 
 .wide-icon svg {
 
     width: 21px;
-
     height: 21px;
 
     fill: none;
@@ -812,7 +753,6 @@ body {
     stroke-linecap: round;
 
     stroke-linejoin: round;
-
 }
 
 
@@ -829,7 +769,6 @@ body {
     flex-direction: column;
 
     gap: 3px;
-
 }
 
 
@@ -843,7 +782,6 @@ body {
 
     color:
         rgba(255,255,255,0.40);
-
 }
 
 
@@ -860,7 +798,6 @@ body {
     overflow: hidden;
 
     text-overflow: ellipsis;
-
 }
 
 
@@ -878,7 +815,6 @@ body {
 
     color:
         rgba(255,255,255,0.38);
-
 }
 
 
@@ -925,7 +861,6 @@ body {
     cursor: pointer;
 
     -webkit-appearance: none;
-
     appearance: none;
 
     box-shadow:
@@ -936,7 +871,6 @@ body {
     transition:
         transform .16s ease,
         box-shadow .16s ease;
-
 }
 
 
@@ -955,7 +889,6 @@ body {
     stroke-linecap: round;
 
     stroke-linejoin: round;
-
 }
 
 
@@ -967,8 +900,6 @@ body {
 
     margin-top: 20px;
 
-    padding-top: 0;
-
     text-align: center;
 
     font-size: 8px;
@@ -979,7 +910,6 @@ body {
 
     color:
         rgba(255,255,255,0.20);
-
 }
 
 
@@ -996,16 +926,15 @@ body {
 
     border-color:
         rgba(255,255,255,0.16);
-
 }
 
 
 .share-button:hover {
 
     box-shadow:
+
         0 13px 40px
         rgba(255,225,0,0.20);
-
 }
 
 
@@ -1020,7 +949,6 @@ body {
 
     transform:
         scale(0.97);
-
 }
 
 
@@ -1039,7 +967,6 @@ body {
 
     outline-offset:
         3px;
-
 }
 
 
@@ -1052,20 +979,6 @@ button[data-busy="true"] {
     pointer-events: none;
 
     opacity: 0.70;
-
-}
-
-
-/* =========================================
-   TOAST
-========================================= */
-
-.toast-message {
-
-    pointer-events: none;
-
-    user-select: none;
-
 }
 
 
@@ -1088,9 +1001,7 @@ button[data-busy="true"] {
                 18px,
                 env(safe-area-inset-bottom)
             );
-
     }
-
 }
 
 
@@ -1104,9 +1015,7 @@ button[data-busy="true"] {
 
         min-height:
             -webkit-fill-available;
-
     }
-
 }
 
 
@@ -1129,35 +1038,28 @@ button[data-busy="true"] {
                 14px,
                 env(safe-area-inset-bottom)
             );
-
     }
 
 
-    /*
-     * Still keep Weber logo
-     * noticeably larger.
-     */
+    /* Large logo retained */
 
     .weber-logo {
 
-        width: 155px;
+        width: 195px;
 
-        height: 70px;
-
+        height: 88px;
     }
 
 
     .logo-container {
 
         margin-bottom: 12px;
-
     }
 
 
     .profile {
 
         margin-bottom: 16px;
-
     }
 
 
@@ -1168,7 +1070,6 @@ button[data-busy="true"] {
         height: 102px;
 
         margin-bottom: 9px;
-
     }
 
 
@@ -1177,58 +1078,49 @@ button[data-busy="true"] {
         font-size: 25px;
 
         margin-bottom: 4px;
-
     }
 
 
     .position {
 
         font-size: 14px;
-
     }
 
 
     .company {
 
         font-size: 12px;
-
     }
 
 
     .action-button {
 
         min-height: 52px;
-
     }
 
 
     .quick-action {
 
         min-height: 68px;
-
     }
 
 
     .wide-button {
 
         min-height: 56px;
-
     }
 
 
     .share-button {
 
         min-height: 51px;
-
     }
 
 
     .footer {
 
         margin-top: 14px;
-
     }
-
 }
 
 
@@ -1253,30 +1145,28 @@ button[data-busy="true"] {
                 12px,
                 env(safe-area-inset-bottom)
             );
-
     }
 
 
     .logo-container {
 
         margin-bottom: 8px;
-
     }
 
 
+    /* Still large enough on short screens */
+
     .weber-logo {
 
-        width: 135px;
+        width: 170px;
 
-        height: 58px;
-
+        height: 75px;
     }
 
 
     .profile {
 
         margin-bottom: 10px;
-
     }
 
 
@@ -1287,42 +1177,36 @@ button[data-busy="true"] {
         height: 82px;
 
         margin-bottom: 7px;
-
     }
 
 
     .profile-ring::before {
 
         inset: -4px;
-
     }
 
 
     .profile h1 {
 
         font-size: 22px;
-
     }
 
 
     .position {
 
         font-size: 12px;
-
     }
 
 
     .company {
 
         font-size: 10px;
-
     }
 
 
     .action-button {
 
         min-height: 48px;
-
     }
 
 
@@ -1331,7 +1215,6 @@ button[data-busy="true"] {
         gap: 7px;
 
         margin-bottom: 8px;
-
     }
 
 
@@ -1340,7 +1223,6 @@ button[data-busy="true"] {
         min-height: 57px;
 
         border-radius: 15px;
-
     }
 
 
@@ -1349,7 +1231,6 @@ button[data-busy="true"] {
         width: 27px;
 
         height: 27px;
-
     }
 
 
@@ -1358,7 +1239,6 @@ button[data-busy="true"] {
         width: 21px;
 
         height: 21px;
-
     }
 
 
@@ -1367,7 +1247,6 @@ button[data-busy="true"] {
         width: 29px;
 
         height: 29px;
-
     }
 
 
@@ -1376,14 +1255,12 @@ button[data-busy="true"] {
         width: 27px;
 
         height: 27px;
-
     }
 
 
     .quick-action {
 
         font-size: 10px;
-
     }
 
 
@@ -1394,7 +1271,6 @@ button[data-busy="true"] {
         margin-bottom: 7px;
 
         border-radius: 15px;
-
     }
 
 
@@ -1405,7 +1281,6 @@ button[data-busy="true"] {
         height: 30px;
 
         border-radius: 9px;
-
     }
 
 
@@ -1414,14 +1289,12 @@ button[data-busy="true"] {
         width: 18px;
 
         height: 18px;
-
     }
 
 
     .wide-text strong {
 
         font-size: 12px;
-
     }
 
 
@@ -1430,21 +1303,18 @@ button[data-busy="true"] {
         min-height: 45px;
 
         font-size: 13px;
-
     }
 
 
     .footer {
 
         margin-top: 10px;
-
     }
-
 }
 
 
 /* =========================================
-   LANDSCAPE
+   LANDSCAPE PHONE
 ========================================= */
 
 @media (
@@ -1464,14 +1334,12 @@ button[data-busy="true"] {
         padding-top: 12px;
 
         padding-bottom: 12px;
-
     }
 
 
     .logo-container {
 
         margin-bottom: 5px;
-
     }
 
 
@@ -1480,14 +1348,12 @@ button[data-busy="true"] {
         width: 115px;
 
         height: 42px;
-
     }
 
 
     .profile {
 
         margin-bottom: 7px;
-
     }
 
 
@@ -1498,42 +1364,36 @@ button[data-busy="true"] {
         height: 62px;
 
         margin-bottom: 4px;
-
     }
 
 
     .profile h1 {
 
         font-size: 18px;
-
     }
 
 
     .position {
 
         font-size: 10px;
-
     }
 
 
     .company {
 
         font-size: 9px;
-
     }
 
 
     .action-button {
 
         min-height: 42px;
-
     }
 
 
     .quick-action {
 
         min-height: 48px;
-
     }
 
 
@@ -1542,23 +1402,19 @@ button[data-busy="true"] {
         min-height: 42px;
 
         margin-bottom: 5px;
-
     }
 
 
     .share-button {
 
         min-height: 40px;
-
     }
 
 
     .footer {
 
         margin-top: 7px;
-
     }
-
 }
 
 
@@ -1571,9 +1427,7 @@ button[data-busy="true"] {
     .card {
 
         max-width: 430px;
-
     }
-
 }
 
 
@@ -1583,13 +1437,6 @@ button[data-busy="true"] {
 
 @media (prefers-reduced-motion: reduce) {
 
-    .background-glow {
-
-        animation: none !important;
-
-    }
-
-
     .card {
 
         animation: none !important;
@@ -1597,7 +1444,6 @@ button[data-busy="true"] {
         opacity: 1;
 
         transform: none;
-
     }
 
 
@@ -1606,7 +1452,5 @@ button[data-busy="true"] {
     *::after {
 
         transition: none !important;
-
     }
-
 }
