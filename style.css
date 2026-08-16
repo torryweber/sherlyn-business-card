@@ -17,6 +17,7 @@
     box-sizing: border-box;
 
     -webkit-tap-highlight-color: transparent;
+
     -webkit-touch-callout: none;
 
 }
@@ -257,10 +258,6 @@ body {
     user-select: none;
 
     -webkit-user-drag: none;
-
-    /*
-       White Weber logo.
-    */
 
     filter:
         brightness(0)
@@ -634,7 +631,7 @@ body {
 
 
 /* =========================================
-   QUICK ICON
+   GENERIC QUICK ICON
 ========================================= */
 
 .quick-icon {
@@ -674,7 +671,9 @@ body {
 
 
 /* =========================================
-   WHATSAPP ICON
+   WHATSAPP
+   IMPORTANT:
+   OVERRIDES GENERIC QUICK ICON
 ========================================= */
 
 .whatsapp-icon {
@@ -694,41 +693,35 @@ body {
 }
 
 
+/*
+   This is intentionally different
+   from .quick-icon svg.
+
+   WhatsApp uses a SOLID brand mark,
+   not an outline icon.
+*/
+
 .whatsapp-icon svg {
 
-    width: 29px;
+    width: 30px;
 
-    height: 29px;
+    height: 30px;
 
     display: block;
 
-    overflow: visible;
+    fill: currentColor;
 
-    color: #FFF200;
-
-}
-
-
-/* WhatsApp outer bubble */
-
-.whatsapp-circle {
-
-    fill: none !important;
-
-    stroke: currentColor !important;
-
-    stroke-width: 2;
-
-    stroke-linecap: round;
-
-    stroke-linejoin: round;
+    stroke: none;
 
 }
 
 
-/* WhatsApp phone */
+/*
+   Force the WhatsApp path to remain
+   solid yellow.
+*/
 
-.whatsapp-handset {
+.whatsapp-icon svg path {
 
     fill: currentColor !important;
 
@@ -970,8 +963,6 @@ body {
 
     margin-top: 20px;
 
-    padding-top: 0;
-
     text-align: center;
 
     font-size: 8px;
@@ -1043,19 +1034,6 @@ body {
 
     outline-offset:
         3px;
-
-}
-
-
-/* =========================================
-   BUSY
-========================================= */
-
-button[data-busy="true"] {
-
-    pointer-events: none;
-
-    opacity: 0.70;
 
 }
 
