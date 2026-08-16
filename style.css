@@ -242,10 +242,6 @@ body {
 }
 
 
-/*
-   LARGE WHITE WEBER LOGO
-*/
-
 .weber-logo {
 
     width: 220px;
@@ -263,8 +259,7 @@ body {
     -webkit-user-drag: none;
 
     /*
-       Converts the black Weber artwork
-       to white.
+       White Weber logo.
     */
 
     filter:
@@ -679,7 +674,7 @@ body {
 
 
 /* =========================================
-   WHATSAPP
+   WHATSAPP ICON
 ========================================= */
 
 .whatsapp-icon {
@@ -694,7 +689,7 @@ body {
 
     justify-content: center;
 
-    color: #fff200;
+    color: #FFF200;
 
 }
 
@@ -709,21 +704,18 @@ body {
 
     overflow: visible;
 
-    color: #fff200;
+    color: #FFF200;
 
 }
 
 
-/*
-   WhatsApp speech-circle
-*/
+/* WhatsApp outer bubble */
 
 .whatsapp-circle {
 
-    fill: none;
+    fill: none !important;
 
-    stroke:
-        currentColor;
+    stroke: currentColor !important;
 
     stroke-width: 2;
 
@@ -734,16 +726,13 @@ body {
 }
 
 
-/*
-   WhatsApp handset
-*/
+/* WhatsApp phone */
 
-.whatsapp-phone {
+.whatsapp-handset {
 
-    fill:
-        currentColor;
+    fill: currentColor !important;
 
-    stroke: none;
+    stroke: none !important;
 
 }
 
